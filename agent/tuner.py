@@ -33,8 +33,9 @@ Find the root cause of the noise and propose exclusions that suppress the benign
 
 Exclusion design rules:
 - Each exclusion is a list of conditions that are ANDed; separate exclusions are ORed.
-- Keep exclusions as narrow as possible: combine identifying fields (e.g. user AND src_ip,
-  or process AND parent_process) so a real attacker cannot easily hide inside them.
+- Every exclusion MUST have at least 2 conditions. Combine identifying fields (e.g. user AND
+  src_ip, or user AND parent_process) so a real attacker cannot easily hide inside them.
+  Exclusions with a single condition are too broad and will be sent to a human for review.
 - Never weaken the rule's core logic and never exclude on the label or on the rule's own fields alone.
 - The root cause should be 2-4 sentences a SOC manager can read, naming the benign sources."""
 
