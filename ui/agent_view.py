@@ -157,6 +157,14 @@ class LiveRun:
         else:
             self.sleep()
 
+    def on_generalize(self, d):
+        r = self.rule
+        r["card"]["generalize"] = d
+        if not d["passed"]:
+            self._set("holdout", "fail", "overfit")
+            self._render_card()
+            self.sleep(2)
+
     def on_attempt(self, d):
         r = self.rule
         rec = d["record"]
@@ -204,6 +212,8 @@ def static_states(res: dict) -> tuple[dict, dict]:
     if ho is not None:
         states["holdout"] = "done" if ho["passed"] else "fail"
         subs["holdout"] = "0 hidden" if ho["passed"] else f"hides {ho['missed']}"
+        if ho["passed"] and last["generalize"] and not last["generalize"]["passed"]:
+            states["holdout"], subs["holdout"] = "fail", "overfit"
     action = "human-approved" if res.get("applied") and res["decision"]["action"] != "auto-applied" \
         else res["decision"]["action"]
     states["apply"], subs["apply"] = APPLY_STATE.get(action, ("warn", action))

@@ -159,6 +159,7 @@ CSS = f"""
   letter-spacing:.2em; color: #ff8b8b; border:2px solid rgba(208,59,59,.85); padding:.15rem .55rem; border-radius:.35rem; opacity:.9;
   animation: stamp .45s cubic-bezier(.2,1.6,.4,1); }}
 .stamp.ok {{ color:#7fe07f; border-color: rgba(12,163,12,.85); }}
+.stamp.warn {{ color:#ffd479; border-color: rgba(250,178,25,.85); }}
 
 /* ---------- dramatic blocked banner ---------- */
 .blocked-banner {{ display:flex; gap:1rem; align-items:center; padding:1rem 1.15rem; border-radius:.9rem; margin:.7rem 0;
@@ -170,6 +171,14 @@ CSS = f"""
 .blocked-banner .bb-text {{ color: #f3d6d6; font-size:.86rem; margin-top:.15rem; line-height:1.45; }}
 .safe-banner {{ display:flex; gap:.8rem; align-items:center; padding:.8rem 1rem; border-radius:.9rem; margin:.6rem 0;
   border:1px solid rgba(12,163,12,.6); background: linear-gradient(100deg, rgba(12,163,12,.18), rgba(12,163,12,.04) 70%); color: var(--text); font-size:.88rem; }}
+.takeaway {{ padding:.85rem 1rem; border-radius:.8rem; margin:.5rem 0 .7rem; color: var(--text); font-size:.9rem; line-height:1.5;
+  border:1px solid rgba(57,135,229,.5); border-left:4px solid var(--accent); background: var(--accent-tint); }}
+.takeaway .tk-label {{ font-size:.66rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color: var(--text-2); margin-bottom:.2rem; }}
+.scope-box {{ display:flex; gap:.8rem; align-items:flex-start; padding:.85rem 1rem; border-radius:.8rem;
+  border:1px solid var(--border); background: var(--surface); color: var(--text-2); font-size:.88rem; line-height:1.55; }}
+.scope-box .scope-ic {{ font-size:1.1rem; color: var(--text-2); line-height:1.3; }}
+.scope-box ul {{ margin:0; padding-left:1.1rem; }}
+.scope-box li {{ margin:.1rem 0; }}
 .note-banner {{ padding:.7rem .95rem; border-radius:.75rem; border:1px solid var(--border); background: var(--surface); color: var(--text-2); font-size:.86rem; margin:.5rem 0; }}
 
 /* ---------- tables ---------- */

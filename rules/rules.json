@@ -14,7 +14,48 @@
         "value": 5
       }
     ],
-    "exclusions": []
+    "exclusions": [
+      {
+        "reason": "Authorized vulnerability scanner at its known fixed IP generates failed login bursts during credentialed scans",
+        "conditions": [
+          {
+            "field": "user",
+            "op": "==",
+            "value": "vuln_scanner"
+          },
+          {
+            "field": "src_ip",
+            "op": "==",
+            "value": "10.0.5.20"
+          }
+        ]
+      },
+      {
+        "reason": "svc_backup service account failed login bursts from internal 10.x addresses, with no process, no VPN and no impossible travel",
+        "conditions": [
+          {
+            "field": "user",
+            "op": "==",
+            "value": "svc_backup"
+          },
+          {
+            "field": "src_ip",
+            "op": "startswith",
+            "value": "10.0."
+          },
+          {
+            "field": "via_vpn",
+            "op": "==",
+            "value": false
+          },
+          {
+            "field": "impossible_travel",
+            "op": "==",
+            "value": false
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "R2",
@@ -31,7 +72,46 @@
         "value": true
       }
     ],
-    "exclusions": []
+    "exclusions": [
+      {
+        "reason": "SCCM deployment service account running encoded PowerShell launched by the ConfigMgr agent (ccmexec.exe)",
+        "conditions": [
+          {
+            "field": "user",
+            "op": "==",
+            "value": "svc_deploy"
+          },
+          {
+            "field": "parent_process",
+            "op": "==",
+            "value": "ccmexec.exe"
+          }
+        ]
+      },
+      {
+        "reason": "Known IT admin accounts running encoded PowerShell interactively from explorer.exe or cmd.exe",
+        "conditions": [
+          {
+            "field": "user",
+            "op": "in",
+            "value": [
+              "it_admin1",
+              "it_admin2",
+              "it_admin3",
+              "it_admin4"
+            ]
+          },
+          {
+            "field": "parent_process",
+            "op": "in",
+            "value": [
+              "explorer.exe",
+              "cmd.exe"
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "R3",
@@ -43,6 +123,32 @@
         "value": true
       }
     ],
-    "exclusions": []
+    "exclusions": [
+      {
+        "reason": "Internal VPN pool addresses (10.8.0.0/16) with via_vpn true on successful logins with no failed attempts are geolocation artifacts of VPN egress, not real travel. Tying the internal source range to the VPN flag prevents an attacker using an external IP or non-VPN session from matching.",
+        "conditions": [
+          {
+            "field": "via_vpn",
+            "op": "==",
+            "value": true
+          },
+          {
+            "field": "src_ip",
+            "op": "startswith",
+            "value": "10.8."
+          },
+          {
+            "field": "event_type",
+            "op": "==",
+            "value": "login_success"
+          },
+          {
+            "field": "failed_count",
+            "op": "==",
+            "value": 0
+          }
+        ]
+      }
+    ]
   }
 ]

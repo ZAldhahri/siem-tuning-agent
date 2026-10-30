@@ -11,13 +11,15 @@ Rule format (rules/rules.json):
     }
 """
 import json
+import os
 from pathlib import Path
 
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 EVENTS_PATH = ROOT / "data" / "events.csv"
-RULES_PATH = ROOT / "rules" / "rules.json"
+# SIEM_RULES_PATH lets the test suite work on a temporary copy instead of the live file.
+RULES_PATH = Path(os.environ.get("SIEM_RULES_PATH", ROOT / "rules" / "rules.json"))
 
 # Supported comparison operators. Each maps (column Series, value) -> boolean mask.
 OPS = {

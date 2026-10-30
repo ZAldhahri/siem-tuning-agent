@@ -285,18 +285,17 @@ def write_report(results: dict) -> None:
          "hidden by an exclusion. **Noise reduction** = share of false positives removed.",
          "- For C and D, a proposal that never passes its checks leaves the rule unchanged. "
          "D's accepted proposals are scored whether they would be auto-applied or queued "
-         "for a human (the auto-applied count is reported separately).", ""]
+         "for a human (the auto-applied count is reported separately). C's accepted proposals "
+         "are scored as if applied; in the real autonomous mode the holdout check would have "
+         "queued them for a human instead.",
+         "- D's validation gate also rejects proposals that remove no validation-week false "
+         "positives (overfitting gate). C has no access to the validation week, so it has neither gate.", ""]
 
-    L += ["## Known limits of this evaluation", "",
-          "- The data is synthetic, and the attack labels are perfect.",
-          "- In `adversarial`, each trap type appears in both week 2 and week 3, so the "
-          "validation gate has a chance to see it. An attack type that first appears in "
-          "week 3 would not be caught by D's gate either.",
-          "- The guard does not penalise overfitting. An exclusion pinned to week 1 values "
-          "(for example one user and host pair) passes every check but may remove no test "
-          "false positives. It shows up here as low noise reduction, not as a failure.",
-          "- C's proposals are scored as if applied. In the real autonomous mode, the "
-          "holdout check would have queued them for a human instead.", ""]
+    L += ["## Evaluation scope", "",
+          "- Data is synthetic with perfect labels, which makes safety measurable. Real analyst "
+          "dispositions are the next step.",
+          "- The holdout gate catches attack patterns that appear in the validation week. Entirely "
+          "new patterns need continuous re-validation, which is on the roadmap.", ""]
 
     L += ["## Headline: full agent (D) on the unseen test week", "",
           "| Dataset | Noise reduction | FP removed | Attacks kept | Missed attacks per run | "

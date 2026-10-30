@@ -105,6 +105,8 @@ flowchart LR
 - Claude never sees holdout data. When the holdout fails, the feedback names the
   exclusion that was too broad, not the attack it hid.
 - Claude cannot use the label, week, or timestamp fields in exclusions.
+- A proposal that is safe but removes no false positives in the holdout week is rejected
+  as overfit to the training data, and Claude is asked to generalize it.
 - Nothing is applied silently. Each auto-apply, queue, rejection, and human decision is
   logged with before and after metrics for both weeks.
 

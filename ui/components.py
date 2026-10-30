@@ -171,8 +171,13 @@ def attempt_state_from_record(rec: dict) -> dict:
     status = rec["status"]
     if status != "accepted" and not rec["proposal"]["exclusions"]:
         status = "nochange"
+    gen = None
+    if ho is not None and ho["passed"]:
+        h = rec["holdout"]
+        gen = {"passed": not reason.startswith("overfit"), "fp_removed": h["fp_removed"],
+               "fp_before": h["fp_before"]}
     return {"attempt": rec["attempt"], "injected": rec.get("injected", False),
-            "proposal": rec["proposal"], "backtest": bt, "holdout": ho,
+            "proposal": rec["proposal"], "backtest": bt, "holdout": ho, "generalize": gen,
             "status": status, "reason": reason,
             "week1": rec.get("week1"), "holdout_view": rec.get("holdout")}
 
@@ -213,6 +218,10 @@ def attempt_card(s: dict) -> str:
                 checks.append('<span class="check pend">… Holdout (unseen week 2)</span>')
             elif ho["passed"]:
                 checks.append('<span class="check pass">✓ Holdout (unseen week 2) · 0 attacks hidden</span>')
+                gen = s.get("generalize")
+                if gen is not None and not gen["passed"]:
+                    checks.append(f'<span class="check fail">✕ Overfit · removes 0 / {gen["fp_before"]} '
+                                  'false positives in the unseen week</span>')
             elif not ho.get("gated", True):
                 checks.append(f'<span class="check skip">Holdout not enforced · hides {ho["missed"]}</span>')
             else:
@@ -243,7 +252,10 @@ def attempt_card(s: dict) -> str:
                     f'{rows}{more}<span class="note">{e(note)}</span></div>')
 
     stamp = ""
-    if status == "rejected":
+    gen = s.get("generalize")
+    if status == "rejected" and gen is not None and not gen["passed"]:
+        stamp = '<div class="stamp warn">OVERFIT</div>'
+    elif status == "rejected":
         stamp = '<div class="stamp">BLOCKED</div>'
     elif status == "accepted":
         stamp = '<div class="stamp ok">SAFE</div>'

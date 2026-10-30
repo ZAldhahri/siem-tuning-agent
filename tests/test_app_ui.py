@@ -1,7 +1,6 @@
 """Dashboard tests with Streamlit's AppTest harness. Claude is replaced by canned answers,
-so no API calls are made. rules.json and the audit log are backed up and restored."""
+so no API calls are made. rules.json and the audit log are temporary copies (see conftest.py)."""
 import json
-import shutil
 
 import pytest
 from streamlit.testing.v1 import AppTest
@@ -21,22 +20,13 @@ BROAD = {"R1": [[cond("user", "==", "vuln_scanner")]], "R2": [[cond("user", "=="
 
 
 @pytest.fixture
-def sandbox(tmp_path):
-    """Back up rules.json and the audit log, start from bare rules, restore afterwards."""
-    rules_bak = tmp_path / "rules.json"
-    shutil.copy(RULES_PATH, rules_bak)
-    log_bak = tmp_path / "audit_log.jsonl"
-    had_log = audit.LOG_PATH.exists()
-    if had_log:
-        shutil.copy(audit.LOG_PATH, log_bak)
+def sandbox():
+    """Start every test from bare rules and an empty log (temporary files, see conftest.py)."""
+    assert "siem-tests-" in str(RULES_PATH), "tests must not run against the live rules.json"
     rules = json.loads(RULES_PATH.read_text())
     RULES_PATH.write_text(json.dumps([{**r, "exclusions": []} for r in rules], indent=2))
     audit.clear_log()
     yield
-    shutil.copy(rules_bak, RULES_PATH)
-    audit.clear_log()
-    if had_log:
-        shutil.copy(log_bak, audit.LOG_PATH)
 
 
 @pytest.fixture
@@ -130,12 +120,39 @@ def test_impact_slider_changes_hours(sandbox, fake_claude):
 def test_evaluation_tab_reads_results_json(sandbox):
     results = json.loads((ROOT / "eval" / "results.json").read_text())
     page = htmls(app())
-    assert results["pytest"]["summary"] in page
-    assert "FAIL" in page                                     # adversarial regression failure shown
-    assert "Do previously accepted rules still hold?" in page
+    assert "Do approved exclusions go stale when attackers change tactics?" in page
+    assert "STALE: re-tune needed" in page and "After agent re-tunes" in page
+    hidden = sum(x["missed"] for x in results["regression"] if x["dataset"] == "adversarial")
+    total = sum(x["attacks"] for x in results["regression"] if x["dataset"] == "adversarial")
+    assert f"{hidden} of {total} attacks slip past" in page
+    assert ">FAIL<" not in page
 
 
 def test_evaluation_tab_without_results(sandbox, monkeypatch):
     import ui.tabs
     monkeypatch.setattr(ui.tabs, "EVAL_RESULTS", ROOT / "eval" / "does_not_exist.json")
     assert "No evaluation results yet" in htmls(app())
+
+
+def test_overfit_rejection_is_shown_and_logged(sandbox, monkeypatch):
+    from tests.test_tuner_offline import overfit_proposal
+    calls = {}
+
+    def ask(messages):
+        rid = json.loads(messages[0]["content"].split("Rule under review:\n")[1].split("\n\nAvailable")[0])["id"]
+        calls[rid] = calls.get(rid, 0) + 1
+        if rid == "R3" and calls[rid] == 1:
+            p = overfit_proposal()
+        else:
+            p = {"root_cause": f"canned {rid}",
+                 "exclusions": [{"reason": "canned", "conditions": g} for g in GOOD[rid]]}
+        return p, [{"type": "text", "text": json.dumps(p)}], {"model": tuner.MODEL, "input_tokens": 1, "output_tokens": 1}
+    monkeypatch.setattr(tuner, "ask_claude", ask)
+    at = app()
+    at.toggle[0].set_value(False).run()
+    click(at, "Run autonomous tuning on all rules")
+    page = htmls(at)
+    assert "OVERFIT" in page and "Overfit · removes 0 /" in page
+    log = audit.read_log()
+    assert any(x["action"] == "rejected" and tuner.OVERFIT_REASON in x["reason"] for x in log)
+    assert any(x["rule_id"] == "R3" and x["action"] == "auto-applied" for x in log)

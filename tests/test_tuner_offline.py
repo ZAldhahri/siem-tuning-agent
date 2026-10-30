@@ -4,7 +4,8 @@ import json
 import pytest
 
 from agent import tuner
-from agent.engine import load_events, load_rules
+from agent.backtest import split_weeks
+from agent.engine import evaluate, load_events, load_rules
 from tests.conftest import cond
 
 RISKY = {"root_cause": "vpn", "exclusions": [
@@ -17,11 +18,19 @@ LABEL = {"root_cause": "cheat", "exclusions": [
 
 @pytest.fixture
 def canned(monkeypatch):
+    """Replace Claude with a queue of proposals. Returns the list of message histories it received."""
+    seen = []
+
     def install(*proposals):
         queue = list(proposals)
         usage = {"model": tuner.MODEL, "input_tokens": 1, "output_tokens": 1}
-        monkeypatch.setattr(tuner, "ask_claude",
-                            lambda messages: (p := queue.pop(0), [{"type": "text", "text": json.dumps(p)}], usage))
+
+        def ask(messages):
+            seen.append([dict(m) for m in messages])
+            p = queue.pop(0)
+            return p, [{"type": "text", "text": json.dumps(p)}], usage
+        monkeypatch.setattr(tuner, "ask_claude", ask)
+        return seen
     return install
 
 
@@ -61,3 +70,31 @@ def test_empty_proposal_means_no_change(canned):
     res = tuner.tune_rule(r3(), load_events(), log=lambda *a: None)
     assert not res["success"] and res["proposed_rule"] is None
     assert len(res["attempts"]) == 2 and "no exclusions" in res["attempts"][-1]["reason"]
+
+
+def overfit_proposal() -> dict:
+    """Exclusions pinned to one week 1 false positive (its IP and user) that never recurs in week 2."""
+    week1, week2 = split_weeks(load_events())
+    alerts = evaluate(r3(), week1)
+    fps = alerts[~alerts["is_malicious"]]
+    row = next(r for _, r in fps.iterrows() if r["src_ip"] not in set(week2["src_ip"]))
+    return {"root_cause": "pinned to week 1", "exclusions": [
+        {"reason": "one host", "conditions": [cond("src_ip", "==", row["src_ip"]), cond("user", "==", row["user"])]}]}
+
+
+def test_overfit_proposal_is_rejected_then_generalized(canned):
+    seen = canned(overfit_proposal(), NARROW)
+    res = tuner.tune_rule(r3(), load_events(), log=lambda *a: None)
+    first, second = res["attempts"]
+    assert first["status"] == "rejected" and first["reason"] == tuner.OVERFIT_REASON
+    assert first["week1"]["missed"] == 0 and first["holdout"]["missed"] == 0   # safe, just useless
+    assert first["holdout"]["fp_removed"] == 0
+    assert second["status"] == "accepted" and res["success"]
+    feedback = seen[1][-1]["content"]                                          # sent with attempt 2
+    assert "generalize it" in feedback and "only matches week 1 values" in feedback
+
+
+def test_overfit_gate_needs_holdout_validation(canned):
+    canned(overfit_proposal())
+    res = tuner.tune_rule(r3(), load_events(), log=lambda *a: None, validate_holdout=False)
+    assert res["success"] and res["holdout"]["fp_removed"] == 0

@@ -1,10 +1,13 @@
 """Append-only audit log of every tuning decision (data/audit_log.jsonl, one JSON per line)."""
 import json
+import os
 from datetime import datetime, timezone
+from pathlib import Path
 
 from agent.engine import ROOT
 
-LOG_PATH = ROOT / "data" / "audit_log.jsonl"
+# SIEM_AUDIT_LOG lets the test suite use a temporary log instead of the live one.
+LOG_PATH = Path(os.environ.get("SIEM_AUDIT_LOG", ROOT / "data" / "audit_log.jsonl"))
 
 
 def _metrics(view: dict | None) -> dict | None:

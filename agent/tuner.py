@@ -5,7 +5,8 @@ Flow for one rule:
   2. Ask Claude for a plain-English root cause and a JSON list of exclusions.
   3. Safety check 1: backtest on week 1. Any real attack suppressed = rejected.
   4. Safety check 2: validate on WEEK 2 (holdout, never shown to Claude).
-     Any real attack suppressed = rejected.
+     Any real attack suppressed = rejected. A proposal that removes no week 2 false
+     positives (it only matches week 1 values) is rejected as overfit.
   5. On rejection, feed the reason back and retry (up to MAX_ATTEMPTS).
   6. Return the final proposal, before/after metrics for both weeks, and every attempt.
      Nothing is written to disk; applying the change is a separate step (see app.py).
@@ -27,6 +28,7 @@ MODEL = "claude-sonnet-5-5"
 MAX_ATTEMPTS = 3
 SAMPLE_ROWS = 25  # how many raw FP events to show Claude besides the field profile
 HIDDEN_FIELDS = ["timestamp", "week", "is_malicious"]  # not shown to / usable by Claude
+OVERFIT_REASON = "overfit to training data: removes no noise on unseen week"
 
 SYSTEM_PROMPT = """You are a senior detection engineer tuning SIEM rules.
 You receive a detection rule and the false-positive alerts it produced.
@@ -225,6 +227,11 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
                 emit("holdout", {"attempt": attempt, "passed": not ho["missed"],
                                  "gated": validate_holdout, "missed": ho["missed"],
                                  "hidden": ho["after"]["missed_true_positives"]})
+                overfit = (validate_holdout and not ho["missed"]
+                           and ho["fp_before"] > 0 and ho["fp_removed"] == 0)
+                if validate_holdout and not ho["missed"]:
+                    emit("generalize", {"attempt": attempt, "passed": not overfit,
+                                        "fp_removed": ho["fp_removed"], "fp_before": ho["fp_before"]})
                 if ho["missed"] and validate_holdout:
                     # Safety check 2 failed: say which exclusion was too broad, but do not
                     # reveal the holdout events, so the holdout stays unseen.
@@ -241,6 +248,16 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
                         + "\nThey are too broad: an attacker can share these field values. "
                         "Make them narrower (combine more specific identifying fields) or drop "
                         "them. Return the complete exclusion list.")
+                elif overfit:
+                    # Overfitting gate: safe, but useless on data it has not seen.
+                    record["reason"] = OVERFIT_REASON
+                    feedback = (
+                        "Your exclusions passed both safety checks, but on the unseen holdout week they "
+                        f"removed 0 of {ho['fp_before']} false positives: your exclusion only matches "
+                        "week 1 values, generalize it. Describe the benign source itself (the service "
+                        "account, process chain or network range) instead of specific users, hosts or IPs "
+                        "seen in week 1, while keeping at least 2 conditions per exclusion. "
+                        "Return the complete exclusion list.")
                 else:
                     record["status"] = "accepted"
                     record["reason"] = ("Passed both checks: 0 attacks hidden in week 1 "

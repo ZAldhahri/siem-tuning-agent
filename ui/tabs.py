@@ -1,6 +1,11 @@
 """Safety & Audit, Impact, Evaluation and How-it-works tabs."""
 import json
+import os
 import re
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
 
 import streamlit as st
 
@@ -32,7 +37,8 @@ def gates_html(counts: dict | None = None) -> str:
         ("Gate 1 · Training backtest", "Replays the proposal on week 1. If any labelled attack would be "
          "hidden, the proposal is rejected and Claude sees the missed events as feedback.", counts.get("g1")),
         ("Gate 2 · Unseen holdout", "Replays it on week 2, which Claude never sees. A hidden attack means "
-         "rejection; Claude is only told which exclusion was too broad.", counts.get("g2")),
+         "rejection; Claude is only told which exclusion was too broad. A proposal that removes no week 2 "
+         "noise is rejected as overfit.", counts.get("g2")),
         (f"Gate 3 · Narrowness", f"Auto-apply needs at least {MIN_CONDITIONS} ANDed conditions in every "
          "exclusion. Anything broader waits for a human to approve or reject it.", counts.get("g3")),
     ]
@@ -49,7 +55,7 @@ def render_safety(events, results: dict) -> None:
     log = audit.read_log()
     rejected = [x for x in log if x["action"] == "rejected"]
     counts = {"g1": sum("Week 1" in x["reason"] for x in rejected),
-              "g2": sum("Holdout" in x["reason"] for x in rejected),
+              "g2": sum("Holdout" in x["reason"] or "overfit" in x["reason"] for x in rejected),
               "g3": sum(x["action"] == "queued for review" and "conditions" in x["reason"] for x in log)}
     html(section("Safety", "Three gates between the model and production",
                  "Every proposal passes through these checks before anything touches rules.json."))
@@ -156,11 +162,53 @@ def _fmt(stat, pct=False):
     return f"{stat['mean']:g}{u}" if stat["std"] == 0 else f"{stat['mean']:g}{u} ± {stat['std']:g}"
 
 
-def _known_limits() -> str:
+def _scope_points() -> list[str]:
+    """Bullets of the 'Evaluation scope' section of eval/REPORT.md (single source of truth)."""
     if not EVAL_REPORT.exists():
-        return ""
-    m = re.search(r"## Known limits of this evaluation\n(.*?)(?=\n## )", EVAL_REPORT.read_text(), re.S)
-    return m.group(1).strip() if m else ""
+        return []
+    m = re.search(r"## Evaluation scope\n(.*?)(?=\n## )", EVAL_REPORT.read_text(), re.S)
+    if not m:
+        return []
+    return [ln[2:].strip() for ln in m.group(1).strip().splitlines() if ln.startswith("- ")]
+
+
+@st.cache_resource(show_spinner=False)
+def _pytest_job(nonce: int) -> dict:
+    """Start the test suite in the background (once per nonce); the page never waits for it."""
+    log = tempfile.NamedTemporaryFile("w", suffix=".log", delete=False)
+    proc = subprocess.Popen([sys.executable, "-m", "pytest", "-q", "-rxX", "-p", "no:cacheprovider"],
+                            cwd=ROOT, stdout=log, stderr=subprocess.STDOUT, text=True)
+    return {"proc": proc, "log": log.name}
+
+
+def pytest_status() -> dict | None:
+    """Live result of the current test suite: {state: running|done, summary, exit_code, xfail}.
+    Returns None when the dashboard itself is running inside the test suite (no recursion)."""
+    if os.environ.get("PYTEST_CURRENT_TEST"):
+        return None
+    job = _pytest_job(st.session_state.get("pytest_nonce", 0))
+    rc = job["proc"].poll()
+    if rc is None:
+        return {"state": "running"}
+    lines = [ln.strip("= ").strip() for ln in Path(job["log"]).read_text().splitlines() if ln.strip()]
+    return {"state": "done", "exit_code": rc, "summary": lines[-1] if lines else "no output",
+            "xfail": [ln for ln in lines if ln.startswith("XFAIL")]}
+
+
+def regression_takeaway(reg: list[dict], after: dict) -> str:
+    """Plain-language reading of the regression results, with the numbers computed."""
+    fresh_ok = all(x["passed"] for x in reg if x["dataset"] != "adversarial")
+    adv = [x for x in reg if x["dataset"] == "adversarial"]
+    hidden, total = sum(x["missed"] for x in adv), sum(x["attacks"] for x in adv)
+    if adv and fresh_ok and hidden and after.get("adversarial") == 0:
+        return ("Approved exclusions stay safe on familiar and shifted data. On adversarial data, attackers "
+                f"abuse trusted accounts, so {hidden} of {total} attacks slip past the stale rules. Re-running "
+                "the agent on that data hides 0, which is why tuning must be continuous.")
+    stale = [d for d in dict.fromkeys(x["dataset"] for x in reg)
+             if any(not x["passed"] for x in reg if x["dataset"] == d)]
+    return (f"Approved exclusions hide attacks on: {', '.join(stale) or 'no dataset'}. "
+            "Re-running the agent on each dataset: " +
+            ", ".join(f"{d} {n} hidden" for d, n in after.items()) + ".")
 
 
 def render_evaluation() -> None:
@@ -176,6 +224,13 @@ def render_evaluation() -> None:
     ds = r["datasets"]
     llm_costs = [x["cost_usd"] for x in r["runs_detail"] if x["variant"] in ("C", "D")]
     pt = r["pytest"]
+    live_pt = pytest_status()
+    if live_pt is None:
+        pt_pill = f'TESTS <b>{e(pt["summary"])}</b> <span class="muted">(at eval time)</span>'
+    elif live_pt["state"] == "running":
+        pt_pill = 'TESTS <b>running…</b>'
+    else:
+        pt_pill = f'TESTS <b>{e(live_pt["summary"])}</b>'
     total_cost = "n/a" if None in llm_costs else f"${sum(llm_costs):.2f}"
     html('<div class="pills" style="margin:.2rem 0 .6rem">'
          f'<span class="pill">GENERATED <b>{e(r["generated_at"].replace("T", " ").replace("+00:00", " UTC"))}</b></span>'
@@ -183,7 +238,7 @@ def render_evaluation() -> None:
          f'<span class="pill">RUNS PER LLM VARIANT <b>{r["runs"]}</b></span>'
          f'<span class="pill">TOTAL API COST <b>{e(total_cost)}</b></span>'
          f'<span class="pill">WALL TIME <b>{r["wall_seconds"]:g} s</b></span>'
-         f'<span class="pill">PYTEST <b>{e(pt["summary"])}</b></span></div>')
+         f'<span class="pill">{pt_pill}</span></div>')
 
     # ---- headline: full agent
     html('<div class="eyebrow" style="margin-top:.8rem">Full agent (D) on the unseen test week</div>')
@@ -260,31 +315,59 @@ def render_evaluation() -> None:
                 "Attempts", "Blocked", "Cost", "Time", "Errors"], rows, cls, scroll=True))
 
     # ---- regression
-    html(section("Regression", "Do previously accepted rules still hold?",
-                 "eval/accepted_rules.json holds the exclusions accepted on the development data. "
-                 "A dataset passes if they hide 0 attacks across all its weeks."))
+    html(section("Regression", "Do approved exclusions go stale when attackers change tactics?",
+                 "The exclusions the agent approved on the development data, re-checked on every dataset. "
+                 "A rule set is stale when it hides attacks it should alert on."))
     reg = r["regression"]
     rule_ids = sorted({x["rule_id"] for x in reg})
     datasets = list(dict.fromkeys(x["dataset"] for x in reg))
+    # Full agent re-tuned on each unseen dataset: attacks hidden on validation + test weeks, worst run.
+    # (Week 1 is 0 by construction: a proposal that hides a training attack is never accepted.)
+    d_runs = {d: [x for x in r["runs_detail"] if x["dataset"] == d and x["variant"] == "D"] for d in ds}
+    after = {d: max(x["week2"]["missed"] + x["week3"]["missed"] for x in runs) for d, runs in d_runs.items() if runs}
+    html(f'<div class="takeaway"><div class="tk-label">Takeaway</div>{e(regression_takeaway(reg, after))}</div>')
     rows, cls = [], []
     for d in datasets:
         cells = {x["rule_id"]: x for x in reg if x["dataset"] == d}
         ok = all(c["passed"] for c in cells.values())
-        rows.append([d] + [Safe(badge(f"{cells[i]['missed']} / {cells[i]['attacks']} hidden",
-                                      "good" if cells[i]["passed"] else "bad", "✓" if cells[i]["passed"] else "✕"))
-                           for i in rule_ids] + [Safe(badge("PASS" if ok else "FAIL", "good" if ok else "bad",
-                                                            "✓" if ok else "✕"))])
-        cls.append([""] * (len(rule_ids) + 2))
-    html(table(["Dataset"] + rule_ids + ["Result"], rows, cls))
-    pt_ok = pt["exit_code"] == 0
-    html(f'<div class="checks" style="margin-top:.6rem">{badge("pytest " + pt["summary"], "good" if pt_ok else "bad", "✓" if pt_ok else "✕")}</div>')
-    for x in pt.get("xfail", []):
-        html(note("Expected failure, documented in the test suite: " + x.replace("XFAIL ", "")))
+        rule_cells = [Safe(badge(f"{cells[i]['missed']} / {cells[i]['attacks']}",
+                                 "good" if cells[i]["passed"] else "warn", "✓" if cells[i]["passed"] else "!"))
+                      for i in rule_ids]
+        result = badge("PASS", "good", "✓") if ok else badge("STALE: re-tune needed", "warn", "!")
+        if d in after:
+            n = after[d]
+            retuned = badge(f"{n} hidden · {len(d_runs[d])}/{len(d_runs[d])} runs", "good" if n == 0 else "bad",
+                            "✓" if n == 0 else "✕")
+        elif ok:
+            retuned = badge("0 hidden · tuned here", "good", "✓")
+        else:
+            retuned = badge("not evaluated", "", "–")
+        rows.append([d] + rule_cells + [Safe(result), Safe(retuned)])
+        cls.append(["nw"] + [""] * (len(rule_ids) + 2))
+    html(table(["Dataset"] + [f"{i} attacks hidden" for i in rule_ids] +
+               ["Approved exclusions", "After agent re-tunes"], rows, cls, compact=True))
 
-    limits = _known_limits()
-    if limits:
-        html(section("Caveats", "Known limits of this evaluation"))
-        st.markdown(limits)
+    with st.expander("Test details"):
+        html('<div class="lead">The approved exclusions live in <span class="mono">eval/accepted_rules.json</span>. '
+             'The same check runs in <span class="mono">tests/test_regression.py</span>, where the adversarial '
+             'case is a strict expected failure.</div>')
+        if live_pt and live_pt["state"] == "done":
+            ok = live_pt["exit_code"] == 0
+            html(f'<div class="checks">{badge("Current suite: " + live_pt["summary"], "good" if ok else "bad", "✓" if ok else "✕")}</div>')
+            for x in live_pt["xfail"]:
+                html(note("Expected failure: " + x.replace("XFAIL ", "")))
+        elif live_pt:
+            html(note("The current test suite is still running in the background. Interact with the page to refresh."))
+        html(note(f"Recorded with the evaluation run: pytest {pt['summary']}"))
+        if live_pt and live_pt["state"] == "done" and st.button("Re-run tests", icon=":material/refresh:"):
+            st.session_state["pytest_nonce"] = st.session_state.get("pytest_nonce", 0) + 1
+            st.rerun()
+
+    points = _scope_points()
+    if points:
+        html(section("Scope", "Evaluation scope"))
+        html('<div class="scope-box"><div class="scope-ic">ⓘ</div><ul>'
+             + "".join(f"<li>{e(p)}</li>" for p in points) + "</ul></div>")
     errors = [j for j in r["jobs"] if j.get("error")]
     html(section("Errors", f"{len(errors)} agent error(s) during the evaluation"))
     for j in errors:
@@ -310,7 +393,7 @@ ARCH_HTML = """
   <div class="arrow">➜</div>
   <div class="lane"><div class="lane-t">3 · Safety gates</div>
     <div class="node gate">Gate 1 · training backtest<small>0 attacks hidden in week 1</small></div>
-    <div class="node gate">Gate 2 · unseen holdout<small>0 attacks hidden in week 2</small></div>
+    <div class="node gate">Gate 2 · unseen holdout<small>0 attacks hidden in week 2 · must remove some noise there</small></div>
     <div class="node gate">Gate 3 · narrowness<small>every exclusion has ≥ 2 conditions</small></div>
     <div class="node bad">Any gate fails<small>blocked, logged, sent back to Claude</small></div></div>
   <div class="arrow">➜</div>
@@ -334,8 +417,9 @@ def render_how(events) -> None:
               "The label, week and timestamp fields are off limits."),
              ("04", "Backtest", "The proposal is replayed on week 1. Any hidden attack is a rejection, and "
               "Claude sees those events as feedback."),
-             ("05", "Holdout", "It is replayed on week 2, which Claude never sees. On a failure, Claude only "
-              f"learns which exclusion was too broad. Up to {MAX_ATTEMPTS} attempts."),
+             ("05", "Holdout", "It is replayed on week 2, which Claude never sees. It must hide no attack and "
+              "still remove some noise there (no overfitting). On a failure, Claude only learns what went wrong, "
+              f"never the holdout events. Up to {MAX_ATTEMPTS} attempts."),
              ("06", "Apply", "Narrow and safe changes are auto-applied to rules.json; the rest wait for a human. "
               "Every decision is written to the audit log.")]
     html('<div class="pipeline">' + "".join(
