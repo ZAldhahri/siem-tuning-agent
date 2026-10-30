@@ -46,3 +46,8 @@ def read_log() -> list[dict]:
 
 def clear_log() -> None:
     LOG_PATH.unlink(missing_ok=True)
+
+
+def tuned_rule_ids() -> set[str]:
+    """Rules whose agent-proposed change is live (auto-applied or approved by a human)."""
+    return {e["rule_id"] for e in read_log() if e["action"] in ("auto-applied", "human-approved")}

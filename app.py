@@ -9,9 +9,11 @@ import pandas as pd
 import streamlit as st
 
 from agent import audit
-from agent.autonomous import DEFAULT_THRESHOLD, MIN_CONDITIONS, run_autonomous, summarize
+from agent.autonomous import (DEFAULT_THRESHOLD, DEMO_RULE_ID, MIN_CONDITIONS, run_autonomous,
+                              summarize)
 from agent.backtest import backtest, split_weeks
 from agent.engine import load_events, load_rules, save_rules
+from agent.impact import DEFAULT_TRIAGE_MINUTES, business_impact
 from agent.tuner import MODEL
 
 st.set_page_config(page_title="SIEM Tuning Agent", page_icon="🛡️", layout="wide")
@@ -25,11 +27,15 @@ rules = load_rules()
 results = st.session_state.setdefault("results", {})   # rule_id -> tuner result
 
 
-def overview_table(rules):
+def overview_table(rules, threshold):
+    tuned = audit.tuned_rule_ids()
     rows = []
     for r in rules:
         m, m1 = backtest(r, events), backtest(r, week1)
-        rows.append({"Rule": f"{r['id']} {r['name']}", "Alerts (2 weeks)": m["alerts"],
+        status = ("✅ Already tuned" if r["id"] in tuned
+                  else "🔔 Noisy" if m1["fp_rate"] > threshold else "OK")
+        rows.append({"Rule": f"{r['id']} {r['name']}", "Status": status,
+                     "Alerts (2 weeks)": m["alerts"],
                      "Attacks caught": m["true_positives"],
                      "False positives": m["false_positives"],
                      "FP rate": f"{m['fp_rate']:.0%}", "Week 1 FP rate": f"{m1['fp_rate']:.0%}",
@@ -64,7 +70,8 @@ def safety_panel(attempts: list[dict]):
     """Every proposal the agent made, including the risky ones that were rejected."""
     rows = [{
         "Attempt": att["attempt"],
-        "Result": "✅ accepted" if att["status"] == "accepted" else "❌ rejected",
+        "Result": ("✅ accepted" if att["status"] == "accepted" else "❌ rejected")
+                  + (" (injected demo)" if att.get("injected") else ""),
         "Why": att["reason"],
         "Week 1 attacks hidden": att["week1"]["missed"] if att["week1"] else "-",
         "Holdout attacks hidden": att["holdout"]["missed"] if att["holdout"] else "not run",
@@ -97,6 +104,10 @@ with st.sidebar:
                f"least {MIN_CONDITIONS} conditions in every exclusion. Anything else is "
                "queued for human review.")
     st.header("Demo controls")
+    inject = st.checkbox("Demo: inject risky proposal",
+                         help=f"Forces a first proposal of 'exclude all VPN logins' on "
+                              f"{DEMO_RULE_ID}. It passes week 1 but hides an attack in the "
+                              "holdout, so the run shows rejected, retry, accepted.")
     if st.button("Reset rules and audit log"):
         save_rules([{**r, "exclusions": []} for r in rules])
         audit.clear_log()
@@ -105,7 +116,8 @@ with st.sidebar:
 
 # --- 1. Current state ---------------------------------------------------------
 st.subheader("Current rule health")
-st.dataframe(overview_table(rules), hide_index=True, width="stretch")
+st.dataframe(overview_table(rules, threshold), hide_index=True, width="stretch")
+st.caption("Rules marked Already tuned are skipped by later autonomous runs until you reset.")
 
 # --- 2. Run the agent ---------------------------------------------------------
 col_auto, col_prop, _ = st.columns([2, 2, 3])
@@ -114,7 +126,8 @@ run_prop = col_prop.button("Propose only (human approves everything)")
 if run_auto or run_prop:
     with st.status("Agent running...", expanded=True) as status:
         try:
-            for res in run_autonomous(events, threshold, auto_apply=run_auto, log=st.write):
+            for res in run_autonomous(events, threshold, auto_apply=run_auto, log=st.write,
+                                      inject_risky=inject):
                 results[res["rule_id"]] = res
             status.update(label="Agent run complete", state="complete", expanded=False)
         except Exception as e:
@@ -132,7 +145,23 @@ if results:
               help=f"{s['alerts_removable_if_approved']} more if queued changes are approved")
     c4.metric("Attacks still caught", f"{s['attacks_caught']} / {s['attacks_total']}")
 
-# --- 4. Per-rule results ------------------------------------------------------
+# --- 4. Business impact (live rules.json vs untuned rules) ---------------------
+st.subheader("💼 Business impact")
+minutes = st.slider("Assumed triage time per alert (minutes)", 1, 60, DEFAULT_TRIAGE_MINUTES)
+imp = business_impact(events, load_rules(), minutes)
+c1, c2, c3, c4 = st.columns(4)
+c1.metric("Alerts removed per week", f"{imp['alerts_removed_per_week']:g}")
+c2.metric("Analyst hours saved per week", f"{imp['hours_saved_per_week']:g}")
+c3.metric("Noise reduction", f"{imp['noise_reduction_pct']:g}%",
+          help="Share of false-positive alerts removed")
+c4.metric("Attacks still caught", f"{imp['attacks_caught']} / {imp['attacks_total']}")
+st.dataframe(pd.DataFrame([{
+    "Week": f"Week {w['week']}" + (" (training)" if w["week"] == 1 else " (holdout)"),
+    "Alerts before": w["alerts_before"], "Alerts after": w["alerts_after"],
+    "Alerts removed": w["alerts_removed"], "Analyst hours saved": w["hours_saved"],
+} for w in imp["weeks"]]), hide_index=True, width="stretch")
+
+# --- 5. Per-rule results ------------------------------------------------------
 BADGES = {"auto-applied": "🤖 Auto-applied", "queued for review": "🕵️ Needs human review",
           "rejected": "⛔ Rejected"}
 
@@ -180,7 +209,7 @@ for rule_id, res in results.items():
         del results[rule_id]
         st.rerun()
 
-# --- 5. Audit log -------------------------------------------------------------
+# --- 6. Audit log -------------------------------------------------------------
 st.divider()
 st.subheader("📜 Audit log")
 log_df = audit_table()

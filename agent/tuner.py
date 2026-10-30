@@ -138,8 +138,12 @@ def slim(view: dict) -> dict:
     return {k: v for k, v in view.items() if k != "missed_events"}
 
 
-def tune_rule(rule: dict, df, log=print) -> dict:
-    """Run the diagnose -> propose -> week 1 check -> holdout check -> retry loop."""
+def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None) -> dict:
+    """Run the diagnose -> propose -> week 1 check -> holdout check -> retry loop.
+
+    first_proposal (demo only): use this instead of Claude's answer on attempt 1, to show
+    the safety checks rejecting a risky change. Later attempts come from Claude as usual.
+    """
     week1, holdout = split_weeks(df)
     log(f"Baseline week 1   {summary_line(backtest(rule, week1))}")
     log(f"Baseline holdout  {summary_line(backtest(rule, holdout))}")
@@ -156,12 +160,18 @@ def tune_rule(rule: dict, df, log=print) -> dict:
 
     attempts, accepted = [], None
     for attempt in range(1, MAX_ATTEMPTS + 1):
-        log(f"Attempt {attempt}: asking {MODEL} for a diagnosis and exclusions...")
-        proposal, raw_content = ask_claude(messages)
+        injected = attempt == 1 and first_proposal is not None
+        if injected:
+            log("Attempt 1: DEMO - injecting a risky proposal instead of asking Claude")
+            proposal = first_proposal
+            raw_content = [{"type": "text", "text": json.dumps(first_proposal)}]
+        else:
+            log(f"Attempt {attempt}: asking {MODEL} for a diagnosis and exclusions...")
+            proposal, raw_content = ask_claude(messages)
         candidate = copy.deepcopy(rule)
         candidate["exclusions"] = rule.get("exclusions", []) + proposal["exclusions"]
         record = {"attempt": attempt, "proposal": proposal, "week1": None, "holdout": None,
-                  "status": "rejected", "reason": ""}
+                  "status": "rejected", "reason": "", "injected": injected}
 
         try:
             check_fields(proposal["exclusions"], df)

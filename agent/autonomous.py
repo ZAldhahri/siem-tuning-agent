@@ -19,6 +19,15 @@ from agent.tuner import tune_rule
 MIN_CONDITIONS = 2
 DEFAULT_THRESHOLD = 0.30  # week 1 FP rate above which a rule gets tuned
 
+# Demo: a tempting but unsafe first proposal for the impossible travel rule. It passes
+# week 1 but hides the stolen-VPN-credentials attack in the week 2 holdout.
+DEMO_RULE_ID = "R3"
+RISKY_DEMO_PROPOSAL = {
+    "root_cause": "(Injected demo proposal) Impossible travel alerts come from VPN users.",
+    "exclusions": [{"reason": "Exclude all VPN logins",
+                    "conditions": [{"field": "via_vpn", "op": "==", "value": True}]}],
+}
+
 
 def noisy_rules(rules: list[dict], df, threshold: float) -> list[dict]:
     """Rules whose week 1 FP rate exceeds the threshold, noisiest first."""
@@ -54,16 +63,29 @@ def apply_rule(new_rule: dict) -> None:
 
 
 def run_autonomous(df, threshold: float = DEFAULT_THRESHOLD, auto_apply: bool = True,
-                   log=print) -> list[dict]:
-    """Tune every noisy rule; auto-apply the safe changes, queue the rest, log everything."""
+                   log=print, inject_risky: bool = False) -> list[dict]:
+    """Tune every noisy rule; auto-apply the safe changes, queue the rest, log everything.
+
+    Rules the agent already tuned (per the audit log) are skipped. inject_risky forces a
+    risky first proposal on the demo rule to show the safety checks at work.
+    """
     results = []
-    targets = noisy_rules(load_rules(), df, threshold)
-    log(f"{len(targets)} rule(s) above {threshold:.0%} week 1 FP rate: "
-        + ", ".join(r["id"] for r in targets))
+    tuned = audit.tuned_rule_ids()
+    noisy = noisy_rules(load_rules(), df, threshold)
+    skipped = [r["id"] for r in noisy if r["id"] in tuned]
+    targets = [r for r in noisy if r["id"] not in tuned]
+    log(f"{len(noisy)} rule(s) above {threshold:.0%} week 1 FP rate: "
+        + (", ".join(r["id"] for r in noisy) or "none"))
+    if skipped:
+        log(f"Skipping already tuned rule(s): {', '.join(skipped)}")
+    if inject_risky and DEMO_RULE_ID not in [r["id"] for r in targets]:
+        log(f"Demo injection skipped: {DEMO_RULE_ID} is not being tuned this run "
+            "(already tuned or below the threshold). Reset to replay the demo.")
     for rule in targets:
         log(f"--- {rule['id']} {rule['name']}")
+        forced = RISKY_DEMO_PROPOSAL if inject_risky and rule["id"] == DEMO_RULE_ID else None
         try:
-            res = tune_rule(rule, df, log=log)
+            res = tune_rule(rule, df, log=log, first_proposal=forced)
         except Exception as e:                       # API failure: log it and keep going
             log(f"{rule['id']}: agent error: {e}")
             audit.record(rule["id"], "rejected", [], f"Agent error: {e}")
@@ -72,7 +94,9 @@ def run_autonomous(df, threshold: float = DEFAULT_THRESHOLD, auto_apply: bool = 
         for att in res["attempts"]:                   # keep a record of every risky proposal
             if att["status"] == "rejected":
                 audit.record(rule["id"], "rejected", att["proposal"]["exclusions"],
-                             f"Attempt {att['attempt']}: {att['reason']}",
+                             f"Attempt {att['attempt']}"
+                             + (" (injected demo proposal)" if att.get("injected") else "")
+                             + f": {att['reason']}",
                              att["week1"], att["holdout"])
 
         action, reason = decide(res)
@@ -118,10 +142,13 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--threshold", type=float, default=DEFAULT_THRESHOLD)
     ap.add_argument("--propose-only", action="store_true", help="never auto-apply")
+    ap.add_argument("--demo-inject", action="store_true",
+                    help=f"force a risky first proposal on {DEMO_RULE_ID}")
     args = ap.parse_args()
 
     events = load_events()
-    results = run_autonomous(events, args.threshold, auto_apply=not args.propose_only)
+    results = run_autonomous(events, args.threshold, auto_apply=not args.propose_only,
+                             inject_risky=args.demo_inject)
     s = summarize(results, events)
     print("\n=== Run summary ===")
     print(f"Auto-applied: {s['auto_applied']}   Queued for review: {s['queued']}   "
