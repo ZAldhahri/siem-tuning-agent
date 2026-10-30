@@ -1,0 +1,13 @@
+[
+  {"id": "R1", "name": "Brute force login",
+   "conditions": [{"field": "event_type", "op": "==", "value": "login_failure_burst"},
+                  {"field": "failed_count", "op": ">", "value": 5}],
+   "exclusions": []},
+  {"id": "R2", "name": "Encoded PowerShell",
+   "conditions": [{"field": "process", "op": "==", "value": "powershell.exe"},
+                  {"field": "encoded", "op": "==", "value": true}],
+   "exclusions": []},
+  {"id": "R3", "name": "Impossible travel login",
+   "conditions": [{"field": "impossible_travel", "op": "==", "value": true}],
+   "exclusions": []}
+]
