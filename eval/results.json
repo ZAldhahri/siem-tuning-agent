@@ -1,0 +1,7792 @@
+{
+  "generated_at": "2026-10-30T13:14:21+00:00",
+  "model": "claude-sonnet-5-5",
+  "runs": 3,
+  "workers": 8,
+  "datasets": [
+    "same",
+    "shifted",
+    "adversarial"
+  ],
+  "wall_seconds": 39.8,
+  "summary": [
+    {
+      "dataset": "adversarial",
+      "variant": "A",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "test_fp_before": 348,
+      "test_attacks_kept": {
+        "mean": 29,
+        "std": 0.0,
+        "min": 29,
+        "max": 29,
+        "values": [
+          29
+        ]
+      },
+      "test_attacks_total": 29,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "B",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 96.0,
+        "std": 0.0,
+        "min": 96.0,
+        "max": 96.0,
+        "values": [
+          96.0
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 334,
+        "std": 0.0,
+        "min": 334,
+        "max": 334,
+        "values": [
+          334
+        ]
+      },
+      "test_fp_before": 348,
+      "test_attacks_kept": {
+        "mean": 18,
+        "std": 0.0,
+        "min": 18,
+        "max": 18,
+        "values": [
+          18
+        ]
+      },
+      "test_attacks_total": 29,
+      "test_missed": {
+        "mean": 11,
+        "std": 0.0,
+        "min": 11,
+        "max": 11,
+        "values": [
+          11
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 97.2,
+        "std": 0.0,
+        "min": 97.2,
+        "max": 97.2,
+        "values": [
+          97.2
+        ]
+      },
+      "val_missed": {
+        "mean": 10,
+        "std": 0.0,
+        "min": 10,
+        "max": 10,
+        "values": [
+          10
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 96.0,
+        "std": 0.0,
+        "min": 96.0,
+        "max": 96.0,
+        "values": [
+          96.0,
+          96.0,
+          96.0
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 334,
+        "std": 0.0,
+        "min": 334,
+        "max": 334,
+        "values": [
+          334,
+          334,
+          334
+        ]
+      },
+      "test_fp_before": 348,
+      "test_attacks_kept": {
+        "mean": 22,
+        "std": 0.0,
+        "min": 22,
+        "max": 22,
+        "values": [
+          22,
+          22,
+          22
+        ]
+      },
+      "test_attacks_total": 29,
+      "test_missed": {
+        "mean": 7,
+        "std": 0.0,
+        "min": 7,
+        "max": 7,
+        "values": [
+          7,
+          7,
+          7
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 97.2,
+        "std": 0.0,
+        "min": 97.2,
+        "max": 97.2,
+        "values": [
+          97.2,
+          97.2,
+          97.2
+        ]
+      },
+      "val_missed": {
+        "mean": 8,
+        "std": 0.0,
+        "min": 8,
+        "max": 8,
+        "values": [
+          8,
+          8,
+          8
+        ]
+      },
+      "attempts": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.03,
+        "std": 0.0,
+        "min": 0.0262,
+        "max": 0.0268,
+        "values": [
+          0.0266,
+          0.0262,
+          0.0268
+        ]
+      },
+      "seconds": {
+        "mean": 11.67,
+        "std": 0.74,
+        "min": 11.1,
+        "max": 12.5,
+        "values": [
+          11.1,
+          12.5,
+          11.4
+        ]
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 33.9,
+        "std": 14.74,
+        "min": 24.7,
+        "max": 50.9,
+        "values": [
+          24.7,
+          26.1,
+          50.9
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 118,
+        "std": 51.16,
+        "min": 86,
+        "max": 177,
+        "values": [
+          86,
+          91,
+          177
+        ]
+      },
+      "test_fp_before": 348,
+      "test_attacks_kept": {
+        "mean": 29,
+        "std": 0.0,
+        "min": 29,
+        "max": 29,
+        "values": [
+          29,
+          29,
+          29
+        ]
+      },
+      "test_attacks_total": 29,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 33.57,
+        "std": 13.99,
+        "min": 24.7,
+        "max": 49.7,
+        "values": [
+          24.7,
+          26.3,
+          49.7
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 7,
+        "std": 0.0,
+        "min": 7,
+        "max": 7,
+        "values": [
+          7,
+          7,
+          7
+        ]
+      },
+      "rejected": {
+        "mean": 4.33,
+        "std": 0.58,
+        "min": 4,
+        "max": 5,
+        "values": [
+          4,
+          4,
+          5
+        ]
+      },
+      "auto_applied": {
+        "mean": 2.67,
+        "std": 0.58,
+        "min": 2,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          2
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0.33,
+        "std": 0.58,
+        "min": 0,
+        "max": 1,
+        "values": [
+          0,
+          0,
+          1
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.07,
+        "std": 0.0,
+        "min": 0.0711,
+        "max": 0.0758,
+        "values": [
+          0.0758,
+          0.0739,
+          0.0711
+        ]
+      },
+      "seconds": {
+        "mean": 29.9,
+        "std": 1.51,
+        "min": 28.7,
+        "max": 31.6,
+        "values": [
+          31.6,
+          29.4,
+          28.7
+        ]
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "A",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "test_fp_before": 318,
+      "test_attacks_kept": {
+        "mean": 17,
+        "std": 0.0,
+        "min": 17,
+        "max": 17,
+        "values": [
+          17
+        ]
+      },
+      "test_attacks_total": 17,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "B",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 96.5,
+        "std": 0.0,
+        "min": 96.5,
+        "max": 96.5,
+        "values": [
+          96.5
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 307,
+        "std": 0.0,
+        "min": 307,
+        "max": 307,
+        "values": [
+          307
+        ]
+      },
+      "test_fp_before": 318,
+      "test_attacks_kept": {
+        "mean": 16,
+        "std": 0.0,
+        "min": 16,
+        "max": 16,
+        "values": [
+          16
+        ]
+      },
+      "test_attacks_total": 17,
+      "test_missed": {
+        "mean": 1,
+        "std": 0.0,
+        "min": 1,
+        "max": 1,
+        "values": [
+          1
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 96.3,
+        "std": 0.0,
+        "min": 96.3,
+        "max": 96.3,
+        "values": [
+          96.3
+        ]
+      },
+      "val_missed": {
+        "mean": 2,
+        "std": 0.0,
+        "min": 2,
+        "max": 2,
+        "values": [
+          2
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 96.5,
+        "std": 0.0,
+        "min": 96.5,
+        "max": 96.5,
+        "values": [
+          96.5,
+          96.5,
+          96.5
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 307,
+        "std": 0.0,
+        "min": 307,
+        "max": 307,
+        "values": [
+          307,
+          307,
+          307
+        ]
+      },
+      "test_fp_before": 318,
+      "test_attacks_kept": {
+        "mean": 17,
+        "std": 0.0,
+        "min": 17,
+        "max": 17,
+        "values": [
+          17,
+          17,
+          17
+        ]
+      },
+      "test_attacks_total": 17,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 96.3,
+        "std": 0.0,
+        "min": 96.3,
+        "max": 96.3,
+        "values": [
+          96.3,
+          96.3,
+          96.3
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.03,
+        "std": 0.0,
+        "min": 0.0255,
+        "max": 0.0257,
+        "values": [
+          0.0255,
+          0.0257,
+          0.0257
+        ]
+      },
+      "seconds": {
+        "mean": 13.03,
+        "std": 0.8,
+        "min": 12.2,
+        "max": 13.8,
+        "values": [
+          12.2,
+          13.8,
+          13.1
+        ]
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 96.5,
+        "std": 0.0,
+        "min": 96.5,
+        "max": 96.5,
+        "values": [
+          96.5,
+          96.5,
+          96.5
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 307,
+        "std": 0.0,
+        "min": 307,
+        "max": 307,
+        "values": [
+          307,
+          307,
+          307
+        ]
+      },
+      "test_fp_before": 318,
+      "test_attacks_kept": {
+        "mean": 17,
+        "std": 0.0,
+        "min": 17,
+        "max": 17,
+        "values": [
+          17,
+          17,
+          17
+        ]
+      },
+      "test_attacks_total": 17,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 96.3,
+        "std": 0.0,
+        "min": 96.3,
+        "max": 96.3,
+        "values": [
+          96.3,
+          96.3,
+          96.3
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.03,
+        "std": 0.0,
+        "min": 0.0258,
+        "max": 0.0268,
+        "values": [
+          0.0268,
+          0.0258,
+          0.0258
+        ]
+      },
+      "seconds": {
+        "mean": 11.47,
+        "std": 0.55,
+        "min": 10.9,
+        "max": 12.0,
+        "values": [
+          12.0,
+          10.9,
+          11.5
+        ]
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "A",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "test_fp_before": 431,
+      "test_attacks_kept": {
+        "mean": 16,
+        "std": 0.0,
+        "min": 16,
+        "max": 16,
+        "values": [
+          16
+        ]
+      },
+      "test_attacks_total": 16,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "B",
+      "runs": 1,
+      "test_noise_reduction_pct": {
+        "mean": 83.3,
+        "std": 0.0,
+        "min": 83.3,
+        "max": 83.3,
+        "values": [
+          83.3
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 359,
+        "std": 0.0,
+        "min": 359,
+        "max": 359,
+        "values": [
+          359
+        ]
+      },
+      "test_fp_before": 431,
+      "test_attacks_kept": {
+        "mean": 16,
+        "std": 0.0,
+        "min": 16,
+        "max": 16,
+        "values": [
+          16
+        ]
+      },
+      "test_attacks_total": 16,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 79.1,
+        "std": 0.0,
+        "min": 79.1,
+        "max": 79.1,
+        "values": [
+          79.1
+        ]
+      },
+      "val_missed": {
+        "mean": 2,
+        "std": 0.0,
+        "min": 2,
+        "max": 2,
+        "values": [
+          2
+        ]
+      },
+      "attempts": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      },
+      "seconds": {
+        "mean": 0.0,
+        "std": 0.0,
+        "min": 0.0,
+        "max": 0.0,
+        "values": [
+          0.0
+        ]
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 92.53,
+        "std": 1.62,
+        "min": 91.6,
+        "max": 94.4,
+        "values": [
+          94.4,
+          91.6,
+          91.6
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 399,
+        "std": 6.93,
+        "min": 395,
+        "max": 407,
+        "values": [
+          407,
+          395,
+          395
+        ]
+      },
+      "test_fp_before": 431,
+      "test_attacks_kept": {
+        "mean": 16,
+        "std": 0.0,
+        "min": 16,
+        "max": 16,
+        "values": [
+          16,
+          16,
+          16
+        ]
+      },
+      "test_attacks_total": 16,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 90.57,
+        "std": 1.15,
+        "min": 89.9,
+        "max": 91.9,
+        "values": [
+          91.9,
+          89.9,
+          89.9
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.03,
+        "std": 0.0,
+        "min": 0.0301,
+        "max": 0.0305,
+        "values": [
+          0.0305,
+          0.0301,
+          0.0302
+        ]
+      },
+      "seconds": {
+        "mean": 13.7,
+        "std": 0.3,
+        "min": 13.4,
+        "max": 14.0,
+        "values": [
+          14.0,
+          13.4,
+          13.7
+        ]
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "runs": 3,
+      "test_noise_reduction_pct": {
+        "mean": 91.6,
+        "std": 0.0,
+        "min": 91.6,
+        "max": 91.6,
+        "values": [
+          91.6,
+          91.6,
+          91.6
+        ]
+      },
+      "test_fp_removed": {
+        "mean": 395,
+        "std": 0.0,
+        "min": 395,
+        "max": 395,
+        "values": [
+          395,
+          395,
+          395
+        ]
+      },
+      "test_fp_before": 431,
+      "test_attacks_kept": {
+        "mean": 16,
+        "std": 0.0,
+        "min": 16,
+        "max": 16,
+        "values": [
+          16,
+          16,
+          16
+        ]
+      },
+      "test_attacks_total": 16,
+      "test_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "val_noise_reduction_pct": {
+        "mean": 89.9,
+        "std": 0.0,
+        "min": 89.9,
+        "max": 89.9,
+        "values": [
+          89.9,
+          89.9,
+          89.9
+        ]
+      },
+      "val_missed": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "attempts": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rejected": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "auto_applied": {
+        "mean": 3,
+        "std": 0.0,
+        "min": 3,
+        "max": 3,
+        "values": [
+          3,
+          3,
+          3
+        ]
+      },
+      "rules_unchanged": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "errors": {
+        "mean": 0,
+        "std": 0.0,
+        "min": 0,
+        "max": 0,
+        "values": [
+          0,
+          0,
+          0
+        ]
+      },
+      "cost_usd": {
+        "mean": 0.03,
+        "std": 0.0,
+        "min": 0.0296,
+        "max": 0.0306,
+        "values": [
+          0.0306,
+          0.0301,
+          0.0296
+        ]
+      },
+      "seconds": {
+        "mean": 13.5,
+        "std": 0.4,
+        "min": 13.1,
+        "max": 13.9,
+        "values": [
+          13.9,
+          13.5,
+          13.1
+        ]
+      }
+    }
+  ],
+  "runs_detail": [
+    {
+      "dataset": "adversarial",
+      "variant": "A",
+      "run": 1,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 346,
+        "fp_before": 316,
+        "fp_removed": 0,
+        "tp_before": 30,
+        "tp_kept": 30,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 377,
+        "fp_before": 348,
+        "fp_removed": 0,
+        "tp_before": 29,
+        "tp_kept": 29,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 3,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "B",
+      "run": 1,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 29,
+        "fp_before": 316,
+        "fp_removed": 307,
+        "tp_before": 30,
+        "tp_kept": 20,
+        "missed": 10,
+        "noise_reduction_pct": 97.2
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 32,
+        "fp_before": 348,
+        "fp_removed": 334,
+        "tp_before": 29,
+        "tp_kept": 18,
+        "missed": 11,
+        "noise_reduction_pct": 96.0
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 1,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 31,
+        "fp_before": 316,
+        "fp_removed": 307,
+        "tp_before": 30,
+        "tp_kept": 22,
+        "missed": 8,
+        "noise_reduction_pct": 97.2
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 36,
+        "fp_before": 348,
+        "fp_removed": 334,
+        "tp_before": 29,
+        "tp_kept": 22,
+        "missed": 7,
+        "noise_reduction_pct": 96.0
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0266,
+      "seconds": 11.1
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 2,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 31,
+        "fp_before": 316,
+        "fp_removed": 307,
+        "tp_before": 30,
+        "tp_kept": 22,
+        "missed": 8,
+        "noise_reduction_pct": 97.2
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 36,
+        "fp_before": 348,
+        "fp_removed": 334,
+        "tp_before": 29,
+        "tp_kept": 22,
+        "missed": 7,
+        "noise_reduction_pct": 96.0
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0262,
+      "seconds": 12.5
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 3,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 31,
+        "fp_before": 316,
+        "fp_removed": 307,
+        "tp_before": 30,
+        "tp_kept": 22,
+        "missed": 8,
+        "noise_reduction_pct": 97.2
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 36,
+        "fp_before": 348,
+        "fp_removed": 334,
+        "tp_before": 29,
+        "tp_kept": 22,
+        "missed": 7,
+        "noise_reduction_pct": 96.0
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0268,
+      "seconds": 11.4
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 1,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 268,
+        "fp_before": 316,
+        "fp_removed": 78,
+        "tp_before": 30,
+        "tp_kept": 30,
+        "missed": 0,
+        "noise_reduction_pct": 24.7
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 291,
+        "fp_before": 348,
+        "fp_removed": 86,
+        "tp_before": 29,
+        "tp_kept": 29,
+        "missed": 0,
+        "noise_reduction_pct": 24.7
+      },
+      "attempts": 7,
+      "rejected": 4,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0758,
+      "seconds": 31.6
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 2,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 263,
+        "fp_before": 316,
+        "fp_removed": 83,
+        "tp_before": 30,
+        "tp_kept": 30,
+        "missed": 0,
+        "noise_reduction_pct": 26.3
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 286,
+        "fp_before": 348,
+        "fp_removed": 91,
+        "tp_before": 29,
+        "tp_kept": 29,
+        "missed": 0,
+        "noise_reduction_pct": 26.1
+      },
+      "attempts": 7,
+      "rejected": 4,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0739,
+      "seconds": 29.4
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 3,
+      "week2": {
+        "alerts_before": 346,
+        "alerts_after": 189,
+        "fp_before": 316,
+        "fp_removed": 157,
+        "tp_before": 30,
+        "tp_kept": 30,
+        "missed": 0,
+        "noise_reduction_pct": 49.7
+      },
+      "week3": {
+        "alerts_before": 377,
+        "alerts_after": 200,
+        "fp_before": 348,
+        "fp_removed": 177,
+        "tp_before": 29,
+        "tp_kept": 29,
+        "missed": 0,
+        "noise_reduction_pct": 50.9
+      },
+      "attempts": 7,
+      "rejected": 5,
+      "auto_applied": 2,
+      "rules_unchanged": 1,
+      "errors": 0,
+      "cost_usd": 0.0711,
+      "seconds": 28.7
+    },
+    {
+      "dataset": "same",
+      "variant": "A",
+      "run": 1,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 368,
+        "fp_before": 348,
+        "fp_removed": 0,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 335,
+        "fp_before": 318,
+        "fp_removed": 0,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 3,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "same",
+      "variant": "B",
+      "run": 1,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 31,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 18,
+        "missed": 2,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 27,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 16,
+        "missed": 1,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 1,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0255,
+      "seconds": 12.2
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 2,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0257,
+      "seconds": 13.8
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 3,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0257,
+      "seconds": 13.1
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 1,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0268,
+      "seconds": 12.0
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 2,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0258,
+      "seconds": 10.9
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 3,
+      "week2": {
+        "alerts_before": 368,
+        "alerts_after": 33,
+        "fp_before": 348,
+        "fp_removed": 335,
+        "tp_before": 20,
+        "tp_kept": 20,
+        "missed": 0,
+        "noise_reduction_pct": 96.3
+      },
+      "week3": {
+        "alerts_before": 335,
+        "alerts_after": 28,
+        "fp_before": 318,
+        "fp_removed": 307,
+        "tp_before": 17,
+        "tp_kept": 17,
+        "missed": 0,
+        "noise_reduction_pct": 96.5
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0258,
+      "seconds": 11.5
+    },
+    {
+      "dataset": "shifted",
+      "variant": "A",
+      "run": 1,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 474,
+        "fp_before": 455,
+        "fp_removed": 0,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 447,
+        "fp_before": 431,
+        "fp_removed": 0,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 0.0
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 3,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "shifted",
+      "variant": "B",
+      "run": 1,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 112,
+        "fp_before": 455,
+        "fp_removed": 360,
+        "tp_before": 19,
+        "tp_kept": 17,
+        "missed": 2,
+        "noise_reduction_pct": 79.1
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 88,
+        "fp_before": 431,
+        "fp_removed": 359,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 83.3
+      },
+      "attempts": 0,
+      "rejected": 0,
+      "auto_applied": 0,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0,
+      "seconds": 0.0
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 1,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 56,
+        "fp_before": 455,
+        "fp_removed": 418,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 91.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 40,
+        "fp_before": 431,
+        "fp_removed": 407,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 94.4
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0305,
+      "seconds": 14.0
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 2,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 65,
+        "fp_before": 455,
+        "fp_removed": 409,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 89.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 52,
+        "fp_before": 431,
+        "fp_removed": 395,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 91.6
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0301,
+      "seconds": 13.4
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 3,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 65,
+        "fp_before": 455,
+        "fp_removed": 409,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 89.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 52,
+        "fp_before": 431,
+        "fp_removed": 395,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 91.6
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0302,
+      "seconds": 13.7
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 1,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 65,
+        "fp_before": 455,
+        "fp_removed": 409,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 89.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 52,
+        "fp_before": 431,
+        "fp_removed": 395,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 91.6
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0306,
+      "seconds": 13.9
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 2,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 65,
+        "fp_before": 455,
+        "fp_removed": 409,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 89.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 52,
+        "fp_before": 431,
+        "fp_removed": 395,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 91.6
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0301,
+      "seconds": 13.5
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 3,
+      "week2": {
+        "alerts_before": 474,
+        "alerts_after": 65,
+        "fp_before": 455,
+        "fp_removed": 409,
+        "tp_before": 19,
+        "tp_kept": 19,
+        "missed": 0,
+        "noise_reduction_pct": 89.9
+      },
+      "week3": {
+        "alerts_before": 447,
+        "alerts_after": 52,
+        "fp_before": 431,
+        "fp_removed": 395,
+        "tp_before": 16,
+        "tp_kept": 16,
+        "missed": 0,
+        "noise_reduction_pct": 91.6
+      },
+      "attempts": 3,
+      "rejected": 0,
+      "auto_applied": 3,
+      "rules_unchanged": 0,
+      "errors": 0,
+      "cost_usd": 0.0296,
+      "seconds": 13.1
+    }
+  ],
+  "regression": [
+    {
+      "dataset": "original (dev)",
+      "rule_id": "R1",
+      "missed": 0,
+      "attacks": 16,
+      "fp_removed": 280,
+      "fp_before": 288,
+      "passed": true
+    },
+    {
+      "dataset": "original (dev)",
+      "rule_id": "R2",
+      "missed": 0,
+      "attacks": 10,
+      "fp_removed": 230,
+      "fp_before": 238,
+      "passed": true
+    },
+    {
+      "dataset": "original (dev)",
+      "rule_id": "R3",
+      "missed": 0,
+      "attacks": 8,
+      "fp_removed": 140,
+      "fp_before": 148,
+      "passed": true
+    },
+    {
+      "dataset": "same",
+      "rule_id": "R1",
+      "missed": 0,
+      "attacks": 25,
+      "fp_removed": 420,
+      "fp_before": 432,
+      "passed": true
+    },
+    {
+      "dataset": "same",
+      "rule_id": "R2",
+      "missed": 0,
+      "attacks": 16,
+      "fp_removed": 345,
+      "fp_before": 357,
+      "passed": true
+    },
+    {
+      "dataset": "same",
+      "rule_id": "R3",
+      "missed": 0,
+      "attacks": 13,
+      "fp_removed": 210,
+      "fp_before": 222,
+      "passed": true
+    },
+    {
+      "dataset": "shifted",
+      "rule_id": "R1",
+      "missed": 0,
+      "attacks": 25,
+      "fp_removed": 380,
+      "fp_before": 620,
+      "passed": true
+    },
+    {
+      "dataset": "shifted",
+      "rule_id": "R2",
+      "missed": 0,
+      "attacks": 16,
+      "fp_removed": 130,
+      "fp_before": 360,
+      "passed": true
+    },
+    {
+      "dataset": "shifted",
+      "rule_id": "R3",
+      "missed": 0,
+      "attacks": 13,
+      "fp_removed": 120,
+      "fp_before": 340,
+      "passed": true
+    },
+    {
+      "dataset": "adversarial",
+      "rule_id": "R1",
+      "missed": 6,
+      "attacks": 33,
+      "fp_removed": 420,
+      "fp_before": 432,
+      "passed": false
+    },
+    {
+      "dataset": "adversarial",
+      "rule_id": "R2",
+      "missed": 6,
+      "attacks": 24,
+      "fp_removed": 345,
+      "fp_before": 357,
+      "passed": false
+    },
+    {
+      "dataset": "adversarial",
+      "rule_id": "R3",
+      "missed": 3,
+      "attacks": 17,
+      "fp_removed": 210,
+      "fp_before": 222,
+      "passed": false
+    }
+  ],
+  "pytest": {
+    "exit_code": 0,
+    "summary": "30 passed, 1 xfailed in 1.11s",
+    "xfail": [
+      "XFAIL tests/test_regression.py::test_accepted_rules_hide_no_attacks[adversarial] - by design: contains compromised svc_deploy / it_admin / VPN-pool / scanner accounts that look exactly like the benign sources these exclusions allow"
+    ]
+  },
+  "jobs": [
+    {
+      "dataset": "same",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 155,
+        "fp_before": 146,
+        "fp_removed": 0,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 141,
+        "fp_before": 133,
+        "fp_removed": 0,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=vuln_scanner",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value user=svc_backup",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 12,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 8,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 130,
+        "fp_before": 124,
+        "fp_removed": 0,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 119,
+        "fp_before": 115,
+        "fp_removed": 0,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=svc_deploy",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value parent_process=explorer.exe",
+          "conditions": [
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "explorer.exe"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value parent_process=cmd.exe",
+          "conditions": [
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "cmd.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 83,
+        "fp_before": 78,
+        "fp_removed": 0,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 75,
+        "fp_before": 70,
+        "fp_removed": 0,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value via_vpn=True",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 9,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 4,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 9,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 4,
+        "missed": 1
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 222,
+        "fp_before": 213,
+        "fp_removed": 0,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 222,
+        "fp_before": 215,
+        "fp_removed": 0,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=svc_backup",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value user=svc_sql",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value user=vuln_scanner",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 41,
+        "fp_before": 213,
+        "fp_removed": 180,
+        "tp_before": 9,
+        "tp_kept": 8,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 30,
+        "fp_before": 215,
+        "fp_removed": 192,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 122,
+        "fp_before": 117,
+        "fp_removed": 0,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 120,
+        "fp_before": 115,
+        "fp_removed": 0,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=SYSTEM",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value user=svc_deploy",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value parent_process=cmd.exe",
+          "conditions": [
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "cmd.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 19,
+        "fp_before": 117,
+        "fp_removed": 103,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 23,
+        "fp_before": 115,
+        "fp_removed": 97,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 130,
+        "fp_before": 125,
+        "fp_removed": 0,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 105,
+        "fp_before": 101,
+        "fp_removed": 0,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value via_vpn=True",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 52,
+        "fp_before": 125,
+        "fp_removed": 77,
+        "tp_before": 5,
+        "tp_kept": 4,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 35,
+        "fp_before": 101,
+        "fp_removed": 70,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 147,
+        "fp_before": 134,
+        "fp_removed": 0,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 158,
+        "fp_before": 145,
+        "fp_removed": 0,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R1",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=vuln_scanner",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value user=svc_backup",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 14,
+        "fp_before": 134,
+        "fp_removed": 129,
+        "tp_before": 13,
+        "tp_kept": 9,
+        "missed": 4
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 10,
+        "fp_before": 145,
+        "fp_removed": 143,
+        "tp_before": 13,
+        "tp_kept": 8,
+        "missed": 5
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 137,
+        "fp_before": 126,
+        "fp_removed": 0,
+        "tp_before": 11,
+        "tp_kept": 11,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 130,
+        "fp_before": 121,
+        "fp_removed": 0,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R2",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value user=svc_deploy",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value parent_process=explorer.exe",
+          "conditions": [
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "explorer.exe"
+            }
+          ]
+        },
+        {
+          "reason": "most frequent FP value parent_process=cmd.exe",
+          "conditions": [
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "cmd.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 10,
+        "fp_before": 126,
+        "fp_removed": 123,
+        "tp_before": 11,
+        "tp_kept": 7,
+        "missed": 4
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 11,
+        "fp_before": 121,
+        "fp_removed": 117,
+        "tp_before": 9,
+        "tp_kept": 7,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "A",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 62,
+        "fp_before": 56,
+        "fp_removed": 0,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 89,
+        "fp_before": 82,
+        "fp_removed": 0,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "B",
+      "run": 1,
+      "rule_id": "R3",
+      "exclusions": [
+        {
+          "reason": "most frequent FP value via_vpn=True",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 0,
+      "rejected": 0,
+      "decision": null,
+      "cost_usd": 0.0,
+      "seconds": 0.0,
+      "error": null,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 5,
+        "fp_before": 56,
+        "fp_removed": 55,
+        "tp_before": 6,
+        "tp_kept": 4,
+        "missed": 2
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 11,
+        "fp_before": 82,
+        "fp_removed": 74,
+        "tp_before": 7,
+        "tp_kept": 3,
+        "missed": 4
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins through the corporate VPN from the internal 10.8.x.x address pool produce spurious geo-location jumps rather than real impossible travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 278,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0072,
+      "seconds": 3.6,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins through the corporate VPN from the internal 10.8.x.x pool cause geo-IP jumps that are not real travel",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 262,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.007,
+      "seconds": 3.7,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner account running from its known scanner IP produces expected login failures across many hosts.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account retries failed logins from internal 10.0.x.x addresses during routine backup jobs; restricted to internal ranges and non-VPN traffic.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 403,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.009,
+      "seconds": 4.1,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell as the svc_deploy deployment service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell interactively from explorer.exe or cmd.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 404,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0095,
+      "seconds": 4.4,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell for software deployment under the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell for administration from cmd.exe or explorer.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "cmd.exe",
+                "explorer.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 392,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0094,
+      "seconds": 4.5,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM client (ccmexec.exe) software deployment by the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "Known IT admin accounts running encoded PowerShell interactively from explorer.exe or cmd.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 388,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0094,
+      "seconds": 4.8,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner account authenticating from its dedicated scanner IP produces expected failed-login bursts across many hosts.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account has retry-heavy failed logins from internal 10.0.x.x addresses; limited to this account and the internal range, with no VPN and no impossible travel.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 425,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0092,
+      "seconds": 5.3,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner at its known scanner IP generates expected failed-login bursts during credential scans",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "svc_backup service account produces routine failed-login retries from internal 10.0.x.x addresses, with no VPN use and no impossible travel",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 416,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0091,
+      "seconds": 5.4,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins through the corporate VPN from the internal 10.8.x.x range cause geo-IP location jumps that are not real travel",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 273,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0071,
+      "seconds": 3.3,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner at its known fixed IP generating expected authentication failures during scans",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account retrying authentication from internal hosts; no interactive process, no VPN, no impossible travel",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 418,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0091,
+      "seconds": 3.9,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell under the svc_deploy service account for software deployment",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell interactively from cmd.exe or explorer.exe for administrative tasks",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "cmd.exe",
+                "explorer.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 444,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0099,
+      "seconds": 4.2,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Successful logins via the corporate VPN from the internal 10.8.x.x VPN pool; geolocation of VPN egress causes spurious impossible-travel flags.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 346,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0078,
+      "seconds": 3.9,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM client (ccmexec.exe) software deployment run by the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell interactively from explorer.exe or cmd.exe for administration",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 387,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0094,
+      "seconds": 3.6,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins over the corporate VPN from internal 10.8.x.x addresses trigger impossible-travel from VPN egress location changes, not from real travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 269,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0071,
+      "seconds": 3.2,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner at its fixed IP, which produces failed logins across many hosts during scans",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "svc_backup service account failing logins from internal 10.0.x.x addresses during backup jobs; limited to internal ranges and bursts below 50 failures so a high-volume attack still alerts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "failed_count",
+              "op": "<",
+              "value": 50
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 436,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0093,
+      "seconds": 4.1,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner account logging in from its dedicated scanner IP; failures are expected scan behavior.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account with routine retry failures from internal 10.0.x.x ranges, not tied to VPN access.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2463,
+        "output_tokens": 400,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0089,
+      "seconds": 4.0,
+      "week2": {
+        "alerts_before": 155,
+        "alerts_after": 13,
+        "fp_before": 146,
+        "fp_removed": 142,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 141,
+        "alerts_after": 10,
+        "fp_before": 133,
+        "fp_removed": 131,
+        "tp_before": 8,
+        "tp_kept": 8,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins over the corporate VPN from internal VPN pool addresses (10.8.x.x) trigger impossible-travel false positives because VPN egress and address assignment look like location changes.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 296,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0073,
+      "seconds": 3.1,
+      "week2": {
+        "alerts_before": 83,
+        "alerts_after": 10,
+        "fp_before": 78,
+        "fp_removed": 73,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 75,
+        "alerts_after": 10,
+        "fp_before": 70,
+        "fp_removed": 65,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "same",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM/ConfigMgr deployment: svc_deploy service account spawning encoded PowerShell from ccmexec.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell administratively from explorer.exe or cmd.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 409,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0096,
+      "seconds": 4.4,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 10,
+        "fp_before": 124,
+        "fp_removed": 120,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 119,
+        "alerts_after": 8,
+        "fp_before": 115,
+        "fp_removed": 111,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension deploying encoded PowerShell scripts as SYSTEM",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell under the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 407,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0097,
+      "seconds": 3.9,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 23,
+        "fp_before": 117,
+        "fp_removed": 99,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 28,
+        "fp_before": 115,
+        "fp_removed": 92,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension spawning encoded PowerShell under SYSTEM is normal endpoint management",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM client (ccmexec.exe) software deployment scripts run by the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "Known IT admin accounts running encoded PowerShell from cmd.exe or explorer.exe for administration",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "cmd.exe",
+                "explorer.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 491,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0106,
+      "seconds": 4.3,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 14,
+        "fp_before": 117,
+        "fp_removed": 108,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 16,
+        "fp_before": 115,
+        "fp_removed": 104,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins over the corporate VPN from internal VPN pool 10.8.x.x; VPN egress shifts apparent geolocation",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins over the corporate VPN from internal VPN pool 10.9.x.x; VPN egress shifts apparent geolocation",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Known shared egress range 198.51.100.0/24 (documentation/proxy range) producing inconsistent geolocation for non-VPN logins",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 544,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0098,
+      "seconds": 4.6,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Vulnerability scanner account authenticating from its known scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "SQL service account failing logins from its known database server IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failing logins from internal 10.0.x.x addresses",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            }
+          ]
+        },
+        {
+          "reason": "Authorized pentest vendor activity from its documentation-range source IPs",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 523,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0101,
+      "seconds": 5.1,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner authenticating from its known scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "SQL service account retrying failed logins from its known database server IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failing logins from internal 10.x addresses (routine backup jobs)",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            }
+          ]
+        },
+        {
+          "reason": "Authorized pentest vendor testing from its external 203.0.113.x range",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 526,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0102,
+      "seconds": 4.9,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins via corporate VPN from the internal 10.8.x.x VPN pool; geo-IP inconsistency is a VPN egress artifact, not real travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins via corporate VPN from the internal 10.9.x.x VPN pool; geo-IP inconsistency is a VPN egress artifact, not real travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins from the 198.51.100.x range (documentation/known egress range) that are not via VPN and have no failed attempts; recurring benign egress that trips geo-IP checks.",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 583,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0102,
+      "seconds": 4.6,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension running encoded PowerShell as SYSTEM for device management scripts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell under the svc_deploy service account for software deployment",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 440,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0101,
+      "seconds": 4.3,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 23,
+        "fp_before": 117,
+        "fp_removed": 99,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 28,
+        "fp_before": 115,
+        "fp_removed": 92,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Vulnerability scanner authenticating from its known scanner host generates expected failed login bursts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "SQL service account failing logins from its known database server IP (retry behavior)",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failing logins from internal 10.x addresses during backup jobs",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            }
+          ]
+        },
+        {
+          "reason": "Authorized pentest vendor activity from the vendor's documented external range",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 538,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0103,
+      "seconds": 5.1,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension running encoded PowerShell as SYSTEM for device management scripts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell under the svc_deploy service account for software deployment",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 404,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0097,
+      "seconds": 3.8,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 23,
+        "fp_before": 117,
+        "fp_removed": 99,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 28,
+        "fp_before": 115,
+        "fp_removed": 92,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins via the corporate VPN from internal VPN pool addresses (10.8.x.x) produce false location jumps",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins via the corporate VPN from internal VPN pool addresses (10.9.x.x) produce false location jumps",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Known corporate/documentation egress range 198.51.100.x used for non-VPN logins that geolocate inconsistently",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 538,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0098,
+      "seconds": 4.3,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension deploying scripts as SYSTEM using encoded PowerShell commands",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM/ConfigMgr agent (ccmexec.exe) running encoded PowerShell under the svc_deploy service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 407,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0097,
+      "seconds": 3.6,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 23,
+        "fp_before": 117,
+        "fp_removed": 99,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 28,
+        "fp_before": 115,
+        "fp_removed": 92,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SQL service account failing logins from its known server 10.0.7.15",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Internal vulnerability scanner running authenticated scans from its known scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failing logins from internal 10.0.x.x address space",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            }
+          ]
+        },
+        {
+          "reason": "Authorized pentest vendor activity from the vendor's 203.0.113.x range",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 543,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0103,
+      "seconds": 5.1,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins through the corporate VPN from the internal VPN address pool 10.8.x.x produce false geo jumps due to VPN egress.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins through the corporate VPN from the internal VPN address pool 10.9.x.x produce false geo jumps due to VPN egress.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins from the 198.51.100.x range (a documentation range, likely a corporate proxy or egress NAT) that come in with no VPN and no failed attempts are benign geo-IP artifacts.",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 623,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0106,
+      "seconds": 5.0,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner running from its dedicated scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "SQL service account failing logins from its known database server IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failures originating from internal 10.x address space",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10."
+            }
+          ]
+        },
+        {
+          "reason": "Contracted pentest vendor testing from its documentation/test range 203.0.113.x",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 527,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0102,
+      "seconds": 5.1,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins arriving through the corporate VPN on the 10.8.x.x pool produce apparent location jumps because of VPN egress, not account compromise.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins arriving through the corporate VPN on the 10.9.x.x pool produce apparent location jumps because of VPN egress, not account compromise.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Successful logins from the 198.51.100.0/24 shared egress range, with no VPN flag, are known corporate or proxy egress that causes geo-IP mismatches.",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 583,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0102,
+      "seconds": 4.8,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Intune Management Extension launching encoded PowerShell as SYSTEM for device management scripts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "SYSTEM"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "IntuneManagementExtension.exe"
+            }
+          ]
+        },
+        {
+          "reason": "SCCM client (ccmexec.exe) running encoded PowerShell under the svc_deploy deployment service account",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2831,
+        "output_tokens": 410,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0098,
+      "seconds": 3.6,
+      "week2": {
+        "alerts_before": 122,
+        "alerts_after": 23,
+        "fp_before": 117,
+        "fp_removed": 99,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 120,
+        "alerts_after": 28,
+        "fp_before": 115,
+        "fp_removed": 92,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Internal vulnerability scanner authenticating from its known scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "SQL service account failing from its known database server IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_sql"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.7.15"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account failing from internal 10.0.x.x addresses (stale credentials on backup jobs)",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            }
+          ]
+        },
+        {
+          "reason": "Authorized pentest vendor testing from its external 203.0.113.x range",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "pentest_vendor"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "203.0.113."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2455,
+        "output_tokens": 529,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0102,
+      "seconds": 5.1,
+      "week2": {
+        "alerts_before": 222,
+        "alerts_after": 24,
+        "fp_before": 213,
+        "fp_removed": 198,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 222,
+        "alerts_after": 14,
+        "fp_before": 215,
+        "fp_removed": 208,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "shifted",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "VPN logins from the internal VPN pool 10.8.x.x produce apparent location jumps due to gateway egress, not real travel",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "VPN logins from the internal VPN pool 10.9.x.x produce apparent location jumps due to gateway egress, not real travel",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.9."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Logins from the 198.51.100.x corporate egress/proxy range are known benign and cause geolocation inconsistencies",
+          "conditions": [
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "198.51.100."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 525,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0096,
+      "seconds": 4.4,
+      "week2": {
+        "alerts_before": 130,
+        "alerts_after": 18,
+        "fp_before": 125,
+        "fp_removed": 112,
+        "tp_before": 5,
+        "tp_kept": 5,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 105,
+        "alerts_after": 10,
+        "fp_before": 101,
+        "fp_removed": 95,
+        "tp_before": 4,
+        "tp_kept": 4,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Successful logins arriving via the corporate VPN from the internal 10.8.x.x address pool produce geolocation jumps that are not real travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 297,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0074,
+      "seconds": 3.0,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 6,
+        "fp_before": 56,
+        "fp_removed": 55,
+        "tp_before": 6,
+        "tp_kept": 5,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 13,
+        "fp_before": 82,
+        "fp_removed": 74,
+        "tp_before": 7,
+        "tp_kept": 5,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM/ConfigMgr client (ccmexec.exe) running encoded PowerShell under the svc_deploy service account for software deployment",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell interactively from explorer.exe or cmd.exe for administrative tasks",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 449,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.01,
+      "seconds": 4.0,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 10,
+        "fp_before": 126,
+        "fp_removed": 123,
+        "tp_before": 11,
+        "tp_kept": 7,
+        "missed": 4
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 11,
+        "fp_before": 121,
+        "fp_removed": 117,
+        "tp_before": 9,
+        "tp_kept": 7,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner account originating from its known scanner IP 10.0.5.20",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "svc_backup service account failing logins from internal 10.0.x.x backup source addresses (known noisy automation); restricted to non-VPN, non-impossible-travel events",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2456,
+        "output_tokens": 427,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0092,
+      "seconds": 4.1,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 15,
+        "fp_before": 134,
+        "fp_removed": 129,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 12,
+        "fp_before": 145,
+        "fp_removed": 143,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner from its dedicated scanner IP produces expected credential-check failures across hosts",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account fails logins in bursts from internal 10.x backup clients; restricted to internal source range, non-VPN, and no impossible travel",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2456,
+        "output_tokens": 401,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0089,
+      "seconds": 4.6,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 15,
+        "fp_before": 134,
+        "fp_removed": 129,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 12,
+        "fp_before": 145,
+        "fp_removed": 143,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins over the corporate VPN from internal 10.8.0.0/16 addresses produce apparent geo jumps due to VPN egress, not real travel.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 277,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0072,
+      "seconds": 3.0,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 6,
+        "fp_before": 56,
+        "fp_removed": 55,
+        "tp_before": 6,
+        "tp_kept": 5,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 13,
+        "fp_before": 82,
+        "fp_removed": 74,
+        "tp_before": 7,
+        "tp_kept": 5,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner generating login failures from its known scanner IP",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account retry bursts from internal 10.0.x.x sources, with no VPN access",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2456,
+        "output_tokens": 371,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0086,
+      "seconds": 3.6,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 15,
+        "fp_before": 134,
+        "fp_removed": 129,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 12,
+        "fp_before": 145,
+        "fp_removed": 143,
+        "tp_before": 13,
+        "tp_kept": 10,
+        "missed": 3
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Logins through the corporate VPN from the internal 10.8.x.x VPN address pool; geo-IP jumps are caused by VPN egress changes",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        },
+        {
+          "reason": "Successful VPN logins with no prior failed attempts from the internal VPN pool, scoped to the login event type",
+          "conditions": [
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2193,
+        "output_tokens": 414,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0085,
+      "seconds": 3.8,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 6,
+        "fp_before": 56,
+        "fp_removed": 55,
+        "tp_before": 6,
+        "tp_kept": 5,
+        "missed": 1
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 13,
+        "fp_before": 82,
+        "fp_removed": 74,
+        "tp_before": 7,
+        "tp_kept": 5,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM deployment service account running encoded PowerShell through the ConfigMgr client agent",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admin accounts running encoded PowerShell from an interactive shell (explorer.exe or cmd.exe)",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 419,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0097,
+      "seconds": 4.0,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 10,
+        "fp_before": 126,
+        "fp_removed": 123,
+        "tp_before": 11,
+        "tp_kept": 7,
+        "missed": 4
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 11,
+        "fp_before": 121,
+        "fp_removed": 117,
+        "tp_before": 9,
+        "tp_kept": 7,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "C",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "SCCM software deployment: svc_deploy service account running encoded PowerShell spawned by ccmexec.exe",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_deploy"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "ccmexec.exe"
+            }
+          ]
+        },
+        {
+          "reason": "IT admins running encoded PowerShell interactively from explorer.exe or cmd.exe for routine administration",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "in",
+              "value": [
+                "it_admin1",
+                "it_admin2",
+                "it_admin3",
+                "it_admin4"
+              ]
+            },
+            {
+              "field": "parent_process",
+              "op": "in",
+              "value": [
+                "explorer.exe",
+                "cmd.exe"
+              ]
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 1,
+      "rejected": 0,
+      "rejected_reasons": [],
+      "decision": "queued for review",
+      "usage": {
+        "input_tokens": 2742,
+        "output_tokens": 459,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0101,
+      "seconds": 4.9,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 10,
+        "fp_before": 126,
+        "fp_removed": 123,
+        "tp_before": 11,
+        "tp_kept": 7,
+        "missed": 4
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 11,
+        "fp_before": 121,
+        "fp_removed": 117,
+        "tp_before": 9,
+        "tp_kept": 7,
+        "missed": 2
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Repeated benign VPN logins by user3 from workstation PC-7 inside the internal VPN pool; the user and host pairing is stable, so geo-IP jumps are VPN artifacts.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user3"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-7"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        },
+        {
+          "reason": "Repeated benign VPN logins by user25 from workstation PC-27 inside the internal VPN pool.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user25"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-27"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        },
+        {
+          "reason": "Repeated benign VPN logins by user23 from workstation PC-10 inside the internal VPN pool.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user23"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-10"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 1 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 4937,
+        "output_tokens": 920,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0191,
+      "seconds": 7.7,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 62,
+        "fp_before": 56,
+        "fp_removed": 0,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 89,
+        "fp_before": 82,
+        "fp_removed": 0,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Recurring VPN logins by user3 from their own workstation PC-7; the VPN gateway causes geo-IP jumps.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user3"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-7"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        },
+        {
+          "reason": "Recurring VPN logins by user25 from their own workstation PC-27; the VPN gateway causes geo-IP jumps.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user25"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-27"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        },
+        {
+          "reason": "Recurring VPN logins by user23 from their own workstation PC-10; the VPN gateway causes geo-IP jumps.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "user23"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-10"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8."
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 1 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 4904,
+        "output_tokens": 886,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0187,
+      "seconds": 7.1,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 62,
+        "fp_before": 56,
+        "fp_removed": 0,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 89,
+        "fp_before": 82,
+        "fp_removed": 0,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner at its fixed IP with moderate failure counts typical of credential scans; extreme bursts still alert",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 40
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account from the known backup subnet 10.0.5.x with moderate retry counts, no VPN, no impossible travel; other source IPs and large bursts still alert",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0.5."
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 30
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 3 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 5615,
+        "output_tokens": 921,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0204,
+      "seconds": 9.0,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 66,
+        "fp_before": 134,
+        "fp_removed": 81,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 72,
+        "fp_before": 145,
+        "fp_removed": 86,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner from its fixed IP with moderate failure counts typical of scan sweeps; abnormally large bursts still alert",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 40
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        },
+        {
+          "reason": "Backup service account from the known backup-related internal host 10.0.5.30 with moderate failure counts, no VPN or impossible travel, and no process activity",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.30"
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 30
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 3 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 5664,
+        "output_tokens": 952,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0208,
+      "seconds": 10.8,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 69,
+        "fp_before": 134,
+        "fp_removed": 78,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 72,
+        "fp_before": 145,
+        "fp_removed": 86,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R1",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Authorized vulnerability scanner at its fixed IP with failure counts within the observed scan range (up to 40); bursts far above this range, VPN use, or impossible travel remain alerting",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "vuln_scanner"
+            },
+            {
+              "field": "src_ip",
+              "op": "==",
+              "value": "10.0.5.20"
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 40
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            }
+          ]
+        },
+        {
+          "reason": "svc_backup routine failed-login bursts from internal backup-subnet addresses with moderate counts (observed up to about 29); higher counts, VPN, or impossible travel still alert",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "svc_backup"
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.0."
+            },
+            {
+              "field": "failed_count",
+              "op": "<=",
+              "value": 30
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "impossible_travel",
+              "op": "==",
+              "value": false
+            },
+            {
+              "field": "encoded",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 3 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 5640,
+        "output_tokens": 985,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0211,
+      "seconds": 8.9,
+      "week2": {
+        "alerts_before": 147,
+        "alerts_after": 18,
+        "fp_before": 134,
+        "fp_removed": 129,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 158,
+        "alerts_after": 15,
+        "fp_before": 145,
+        "fp_removed": 143,
+        "tp_before": 13,
+        "tp_kept": 13,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 1,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Narrow retained exclusion: it_admin1 running encoded PowerShell from explorer.exe on a single known admin workstation, confirmed benign in the training data and not implicated in any holdout attack. Kept very specific so it cannot be shared broadly.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "it_admin1"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "explorer.exe"
+            },
+            {
+              "field": "host",
+              "op": "==",
+              "value": "PC-20"
+            },
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": false
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 3,
+      "rejected": 2,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 4 real attack(s) the agent never saw",
+        "Holdout (week 2): would hide 2 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 10639,
+        "output_tokens": 1464,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0359,
+      "seconds": 13.1,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 137,
+        "fp_before": 126,
+        "fp_removed": 0,
+        "tp_before": 11,
+        "tp_kept": 11,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 130,
+        "fp_before": 121,
+        "fp_removed": 0,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [],
+      "success": false,
+      "attempts": 3,
+      "rejected": 3,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 4 real attack(s) the agent never saw",
+        "Holdout (week 2): would hide 2 real attack(s) the agent never saw",
+        "Agent proposed no exclusions (no safe tuning found)"
+      ],
+      "decision": "rejected",
+      "usage": {
+        "input_tokens": 10370,
+        "output_tokens": 1015,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0309,
+      "seconds": 11.1,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 137,
+        "fp_before": 126,
+        "fp_removed": 0,
+        "tp_before": 11,
+        "tp_kept": 11,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 130,
+        "fp_before": 121,
+        "fp_removed": 0,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 2,
+      "rule_id": "R2",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "Single IT admin account it_admin1 running encoded PowerShell interactively from explorer.exe on a managed PC; narrow to one account and one parent process. This was not implicated in holdout misses.",
+          "conditions": [
+            {
+              "field": "user",
+              "op": "==",
+              "value": "it_admin1"
+            },
+            {
+              "field": "parent_process",
+              "op": "==",
+              "value": "explorer.exe"
+            },
+            {
+              "field": "host",
+              "op": "startswith",
+              "value": "PC-"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 3,
+      "rejected": 2,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 4 real attack(s) the agent never saw",
+        "Holdout (week 2): would hide 2 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 10625,
+        "output_tokens": 1352,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0348,
+      "seconds": 13.3,
+      "week2": {
+        "alerts_before": 137,
+        "alerts_after": 135,
+        "fp_before": 126,
+        "fp_removed": 2,
+        "tp_before": 11,
+        "tp_kept": 11,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 130,
+        "alerts_after": 125,
+        "fp_before": 121,
+        "fp_removed": 5,
+        "tp_before": 9,
+        "tp_kept": 9,
+        "missed": 0
+      }
+    },
+    {
+      "dataset": "adversarial",
+      "variant": "D",
+      "run": 3,
+      "rule_id": "R3",
+      "error": null,
+      "exclusions": [
+        {
+          "reason": "VPN logins from the 10.8.x.x pool onto standard corporate workstations (PC-*) generate geo-IP jumps; restricting to VPN, a single 10.8.x subnet, the PC- host naming and zero failures narrows the match so that logins from other subnets, servers or non-standard hosts still alert.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8.1."
+            },
+            {
+              "field": "host",
+              "op": "startswith",
+              "value": "PC-"
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        },
+        {
+          "reason": "Same VPN geo-IP noise from the 10.8.2.x subnet onto corporate PC-* workstations, kept as a separate narrow exclusion.",
+          "conditions": [
+            {
+              "field": "via_vpn",
+              "op": "==",
+              "value": true
+            },
+            {
+              "field": "src_ip",
+              "op": "startswith",
+              "value": "10.8.2."
+            },
+            {
+              "field": "host",
+              "op": "startswith",
+              "value": "PC-"
+            },
+            {
+              "field": "failed_count",
+              "op": "==",
+              "value": 0
+            },
+            {
+              "field": "event_type",
+              "op": "==",
+              "value": "login_success"
+            }
+          ]
+        }
+      ],
+      "success": true,
+      "attempts": 2,
+      "rejected": 1,
+      "rejected_reasons": [
+        "Holdout (week 2): would hide 1 real attack(s) the agent never saw"
+      ],
+      "decision": "auto-applied",
+      "usage": {
+        "input_tokens": 4959,
+        "output_tokens": 919,
+        "models": [
+          "claude-sonnet-5-5"
+        ]
+      },
+      "cost_usd": 0.0191,
+      "seconds": 8.7,
+      "week2": {
+        "alerts_before": 62,
+        "alerts_after": 34,
+        "fp_before": 56,
+        "fp_removed": 28,
+        "tp_before": 6,
+        "tp_kept": 6,
+        "missed": 0
+      },
+      "week3": {
+        "alerts_before": 89,
+        "alerts_after": 55,
+        "fp_before": 82,
+        "fp_removed": 34,
+        "tp_before": 7,
+        "tp_kept": 7,
+        "missed": 0
+      }
+    }
+  ]
+}

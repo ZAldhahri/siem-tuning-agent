@@ -40,6 +40,8 @@ python data/generate_events.py        # optional: regenerate data/events.csv (fi
 | `python -m agent.autonomous --demo-inject` | Forces a risky first proposal on R3 (see below) | Yes | Yes |
 | `python -m agent.impact` | Business impact of the current rules.json | No | No |
 | `streamlit run app.py` | The dashboard | On button click | On run or approval |
+| `python -m eval.run_eval` | Full evaluation (see below) | Yes | No |
+| `python -m pytest` | Unit and regression tests | No | No |
 
 To start over, use "Reset rules and audit log" in the dashboard sidebar. It empties every
 rule's exclusions, clears `data/audit_log.jsonl`, and so also clears "Already tuned".
@@ -107,6 +109,34 @@ brute force, encoded PowerShell, and impossible travel. Each rule has:
 - some messy benign noise that cannot be excluded safely,
 - "trap" attacks that share field values with the noise, so a broad exclusion hides
   them. Some traps appear only in week 2.
+
+## Evaluation
+
+Reproduce everything with one command (needs the API key; costs a few dollars, about 10 minutes):
+
+```bash
+python -m eval.run_eval
+```
+
+It regenerates three unseen datasets (`data/generate_unseen.py`, fixed seeds: same
+distribution, shifted noise, adversarial traps). It tunes the bare rules on each dataset's
+week 1 with four variants and scores them on week 3, a test week no variant ever touches.
+Week 2 is the full agent's validation gate. The variants are:
+
+- **A:** no agent (bare rules).
+- **B:** heuristic, excluding the most frequent false-positive value with no LLM.
+- **C:** the agent without holdout validation.
+- **D:** the full agent.
+
+The LLM variants run 3 times each to show run-to-run variance. The script also re-checks
+previously accepted rules on every dataset and runs the pytest suite. Results go to
+`eval/results.json`, and the tables to [eval/REPORT.md](eval/REPORT.md).
+
+```bash
+python -m eval.run_eval --runs 1 --datasets same    # quick smoke run
+python -m eval.run_eval --report-only               # rebuild REPORT.md from results.json
+python -m pytest                                    # unit and regression tests only, no API
+```
 
 ## Limitations & Roadmap
 

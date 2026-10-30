@@ -1,0 +1,32 @@
+[
+  {"id": "R1", "name": "Brute force login",
+   "conditions": [{"field": "event_type", "op": "==", "value": "login_failure_burst"},
+                  {"field": "failed_count", "op": ">", "value": 5}],
+   "exclusions": [
+     {"reason": "Authorized vulnerability scanner from its dedicated IP",
+      "conditions": [{"field": "user", "op": "==", "value": "vuln_scanner"},
+                     {"field": "src_ip", "op": "==", "value": "10.0.5.20"}]},
+     {"reason": "Backup service account retries from internal hosts",
+      "conditions": [{"field": "user", "op": "==", "value": "svc_backup"},
+                     {"field": "src_ip", "op": "startswith", "value": "10."},
+                     {"field": "via_vpn", "op": "==", "value": false},
+                     {"field": "impossible_travel", "op": "==", "value": false}]}]},
+  {"id": "R2", "name": "Encoded PowerShell",
+   "conditions": [{"field": "process", "op": "==", "value": "powershell.exe"},
+                  {"field": "encoded", "op": "==", "value": true}],
+   "exclusions": [
+     {"reason": "SCCM deployments by svc_deploy via ccmexec.exe",
+      "conditions": [{"field": "user", "op": "==", "value": "svc_deploy"},
+                     {"field": "parent_process", "op": "==", "value": "ccmexec.exe"}]},
+     {"reason": "IT admins running encoded PowerShell interactively",
+      "conditions": [{"field": "user", "op": "in",
+                      "value": ["it_admin1", "it_admin2", "it_admin3", "it_admin4"]},
+                     {"field": "parent_process", "op": "in", "value": ["explorer.exe", "cmd.exe"]}]}]},
+  {"id": "R3", "name": "Impossible travel login",
+   "conditions": [{"field": "impossible_travel", "op": "==", "value": true}],
+   "exclusions": [
+     {"reason": "Corporate VPN logins from the 10.8.x.x pool",
+      "conditions": [{"field": "via_vpn", "op": "==", "value": true},
+                     {"field": "src_ip", "op": "startswith", "value": "10.8."},
+                     {"field": "event_type", "op": "==", "value": "login_success"}]}]}
+]
