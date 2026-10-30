@@ -14,48 +14,7 @@
         "value": 5
       }
     ],
-    "exclusions": [
-      {
-        "reason": "Authorized vulnerability scanner account logging in from its known scanner IP 10.0.5.20 generates expected failed-login bursts during scans.",
-        "conditions": [
-          {
-            "field": "user",
-            "op": "==",
-            "value": "vuln_scanner"
-          },
-          {
-            "field": "src_ip",
-            "op": "==",
-            "value": "10.0.5.20"
-          }
-        ]
-      },
-      {
-        "reason": "The svc_backup service account produces routine failed-login bursts from internal 10.0.x.x clients during backup jobs. The exclusion is limited to internal source addresses and to non-VPN, non-impossible-travel events so that external or anomalous use is still detected.",
-        "conditions": [
-          {
-            "field": "user",
-            "op": "==",
-            "value": "svc_backup"
-          },
-          {
-            "field": "src_ip",
-            "op": "startswith",
-            "value": "10.0."
-          },
-          {
-            "field": "via_vpn",
-            "op": "==",
-            "value": false
-          },
-          {
-            "field": "impossible_travel",
-            "op": "==",
-            "value": false
-          }
-        ]
-      }
-    ]
+    "exclusions": []
   },
   {
     "id": "R2",
