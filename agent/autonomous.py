@@ -63,12 +63,15 @@ def apply_rule(new_rule: dict) -> None:
 
 
 def run_autonomous(df, threshold: float = DEFAULT_THRESHOLD, auto_apply: bool = True,
-                   log=print, inject_risky: bool = False) -> list[dict]:
+                   log=print, inject_risky: bool = False, on_event=None) -> list[dict]:
     """Tune every noisy rule; auto-apply the safe changes, queue the rest, log everything.
 
     Rules the agent already tuned (per the audit log) are skipped. inject_risky forces a
     risky first proposal on the demo rule to show the safety checks at work.
+    on_event(kind, data) (optional): structured progress for UIs. Adds run_start,
+    rule_start, decision and error to the tuner's events.
     """
+    emit = on_event or (lambda kind, data: None)
     results = []
     tuned = audit.tuned_rule_ids()
     noisy = noisy_rules(load_rules(), df, threshold)
@@ -78,16 +81,21 @@ def run_autonomous(df, threshold: float = DEFAULT_THRESHOLD, auto_apply: bool = 
         + (", ".join(r["id"] for r in noisy) or "none"))
     if skipped:
         log(f"Skipping already tuned rule(s): {', '.join(skipped)}")
-    if inject_risky and DEMO_RULE_ID not in [r["id"] for r in targets]:
+    inject_skipped = inject_risky and DEMO_RULE_ID not in [r["id"] for r in targets]
+    if inject_skipped:
         log(f"Demo injection skipped: {DEMO_RULE_ID} is not being tuned this run "
             "(already tuned or below the threshold). Reset to replay the demo.")
+    emit("run_start", {"targets": [r["id"] for r in targets], "skipped": skipped,
+                       "inject_skipped": inject_skipped})
     for rule in targets:
         log(f"--- {rule['id']} {rule['name']}")
+        emit("rule_start", {"rule": rule})
         forced = RISKY_DEMO_PROPOSAL if inject_risky and rule["id"] == DEMO_RULE_ID else None
         try:
-            res = tune_rule(rule, df, log=log, first_proposal=forced)
+            res = tune_rule(rule, df, log=log, first_proposal=forced, on_event=on_event)
         except Exception as e:                       # API failure: log it and keep going
             log(f"{rule['id']}: agent error: {e}")
+            emit("error", {"rule_id": rule["id"], "error": str(e)})
             audit.record(rule["id"], "rejected", [], f"Agent error: {e}")
             continue
 
@@ -110,6 +118,7 @@ def run_autonomous(df, threshold: float = DEFAULT_THRESHOLD, auto_apply: bool = 
                          res["week1"], res["holdout"])
 
         res["decision"] = {"action": action, "reason": reason}
+        emit("decision", {"rule_id": rule["id"], "action": action, "reason": reason})
         log(f"{rule['id']} decision: {action.upper()} - {reason}")
         results.append(res)
     return results

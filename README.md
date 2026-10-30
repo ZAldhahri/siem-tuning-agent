@@ -48,14 +48,22 @@ rule's exclusions, clears `data/audit_log.jsonl`, and so also clears "Already tu
 
 ## Demo script
 
-1. `streamlit run app.py`. All three rules show as Noisy at about 95% FP rate.
-2. Tick **Demo: inject risky proposal** in the sidebar.
-3. Click **Run autonomous tuning on all rules**.
-4. Show R3's safety check: the injected "exclude all VPN logins" passes week 1 but would
-   hide a stolen-VPN-credentials attack in the unseen holdout, so it is rejected. Claude
-   retries with a narrower exclusion that passes both checks and is auto-applied.
-5. Show the business impact panel, move the triage-time slider, and scroll the audit log.
-6. Click run again: every rule shows Already tuned and is skipped.
+1. `streamlit run app.py`. The **Live Agent** tab shows all three rules as Noisy, at about
+   95% false positives.
+2. In the sidebar, tick **Demo: inject risky proposal**. Leave **Step-by-step animation** on.
+3. Click **Run autonomous tuning on all rules**. Each rule's tracker steps through detect,
+   diagnose, propose, backtest, holdout and apply as the agent works.
+4. On the impossible travel rule, the injected "exclude all VPN logins" passes week 1. It
+   then fails the unseen holdout, and a red **UNSAFE CHANGE BLOCKED** banner appears. The
+   card shows the real attack the change would have silenced, and Claude retries with a
+   narrower exclusion that passes every gate.
+5. **Safety & Audit** shows the blocked proposal, the live rule diffs and the audit log.
+   **Impact** shows analyst hours saved, and the triage-time slider changes it.
+6. **Evaluation** reads `eval/results.json`. It shows the ablations, run-to-run variance and
+   the regression check, including the adversarial failure. **How it works** shows the
+   architecture.
+7. Click run again: every rule shows Already tuned and is skipped. Use **Reset rules and
+   audit log** to replay the demo.
 
 ## Architecture
 
@@ -87,7 +95,7 @@ flowchart LR
 | `agent/autonomous.py` | Picks noisy rules, skips rules that are already tuned, decides auto-apply, queue or reject, and writes the audit log. |
 | `agent/audit.py` | Append-only JSONL audit log. |
 | `agent/impact.py` | Alerts removed and analyst hours saved per week, noise reduction, and attacks caught. |
-| `app.py` | Streamlit dashboard. |
+| `app.py`, `ui/` | Streamlit dashboard. `ui/theme.py` holds the dark theme and color tokens, `ui/components.py` the HTML cards, `ui/charts.py` the Altair charts, `ui/agent_view.py` the animated live run, and `ui/tabs.py` the other tabs. `.streamlit/config.toml` sets the base theme. |
 
 **Safety design**
 

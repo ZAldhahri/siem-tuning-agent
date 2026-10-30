@@ -1,0 +1,25 @@
+# Dark security-operations theme for the dashboard (see ui/theme.py for the matching CSS tokens).
+[theme]
+base = "dark"
+primaryColor = "#3987e5"
+backgroundColor = "#0a0e14"
+secondaryBackgroundColor = "#111821"
+textColor = "#e6edf3"
+borderColor = "#1f2a37"
+font = "Inter, system-ui, -apple-system, Segoe UI, sans-serif"
+codeFont = "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+baseRadius = "0.6rem"
+redColor = "#d03b3b"
+greenColor = "#0ca30c"
+yellowColor = "#fab219"
+blueColor = "#3987e5"
+
+[theme.sidebar]
+backgroundColor = "#0d121a"
+secondaryBackgroundColor = "#111821"
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

@@ -142,19 +142,26 @@ def slim(view: dict) -> dict:
 
 
 def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
-              validate_holdout: bool = True) -> dict:
+              validate_holdout: bool = True, on_event=None) -> dict:
     """Run the diagnose -> propose -> week 1 check -> holdout check -> retry loop.
 
     first_proposal (demo only): use this instead of Claude's answer on attempt 1, to show
     the safety checks rejecting a risky change. Later attempts come from Claude as usual.
     validate_holdout=False (ablation only): accept after the week 1 check alone. The holdout
     result is still recorded, but it no longer gates the proposal.
+    on_event(kind, data) (optional): structured progress for UIs. kinds: detect, diagnose,
+    propose, backtest, holdout, attempt.
     """
     started = time.monotonic()
+    emit = on_event or (lambda kind, data: None)
     week1, holdout = split_weeks(df)
     log(f"Baseline week 1   {summary_line(backtest(rule, week1))}")
     log(f"Baseline holdout  {summary_line(backtest(rule, holdout))}")
 
+    base = backtest(rule, week1)
+    emit("detect", {"rule_id": rule["id"], "alerts": base["alerts"],
+                    "false_positives": base["false_positives"],
+                    "true_positives": base["true_positives"], "fp_rate": base["fp_rate"]})
     alerts = evaluate(rule, week1)
     fp_alerts = alerts[~alerts["is_malicious"]]
     messages = [{"role": "user", "content": (
@@ -168,6 +175,7 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
     attempts, accepted = [], None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         injected = attempt == 1 and first_proposal is not None
+        emit("diagnose", {"attempt": attempt, "injected": injected})
         if injected:
             log("Attempt 1: DEMO - injecting a risky proposal instead of asking Claude")
             proposal = first_proposal
@@ -176,6 +184,7 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
         else:
             log(f"Attempt {attempt}: asking {MODEL} for a diagnosis and exclusions...")
             proposal, raw_content, usage = ask_claude(messages)
+        emit("propose", {"attempt": attempt, "injected": injected, "proposal": proposal})
         candidate = copy.deepcopy(rule)
         candidate["exclusions"] = rule.get("exclusions", []) + proposal["exclusions"]
         record = {"attempt": attempt, "proposal": proposal, "week1": None, "holdout": None,
@@ -186,6 +195,7 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
             record["reason"] = "Agent proposed no exclusions (no safe tuning found)"
             attempts.append(record)
             log(f"Attempt {attempt}: NO CHANGE - {record['reason']}")
+            emit("attempt", {"attempt": attempt, "record": record})
             break
 
         try:
@@ -193,9 +203,14 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
             w1 = compare(rule, candidate, week1)
         except (ValueError, TypeError) as e:      # unknown field/op or bad value type
             record["reason"] = f"Invalid proposal: {e}"
+            emit("backtest", {"attempt": attempt, "passed": False, "error": str(e),
+                              "missed": 0, "hidden": []})
             feedback = f"Your exclusions could not be evaluated: {e}. Fix them."
         else:
             record["week1"] = slim(w1)
+            emit("backtest", {"attempt": attempt, "passed": not w1["missed"], "error": None,
+                              "missed": w1["missed"],
+                              "hidden": w1["after"]["missed_true_positives"]})
             if w1["missed"]:
                 # Safety check 1 failed: week 1 is training data, so show the events.
                 record["reason"] = f"Week 1 backtest: would hide {w1['missed']} real attack(s)"
@@ -207,6 +222,9 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
             else:
                 ho = compare(rule, candidate, holdout)
                 record["holdout"] = slim(ho)
+                emit("holdout", {"attempt": attempt, "passed": not ho["missed"],
+                                 "gated": validate_holdout, "missed": ho["missed"],
+                                 "hidden": ho["after"]["missed_true_positives"]})
                 if ho["missed"] and validate_holdout:
                     # Safety check 2 failed: say which exclusion was too broad, but do not
                     # reveal the holdout events, so the holdout stays unseen.
@@ -232,6 +250,7 @@ def tune_rule(rule: dict, df, log=print, first_proposal: dict | None = None,
 
         attempts.append(record)
         log(f"Attempt {attempt}: {record['status'].upper()} - {record['reason']}")
+        emit("attempt", {"attempt": attempt, "record": record})
         if accepted:
             break
         messages += [{"role": "assistant", "content": raw_content},
