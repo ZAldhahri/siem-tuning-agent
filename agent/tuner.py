@@ -1,12 +1,14 @@
 """Tuning agent: diagnose a noisy rule with Claude, propose exclusions, backtest, retry.
 
 Flow for one rule:
-  1. Backtest the current rule to get baseline metrics and its false-positive alerts.
+  1. Profile the rule's false positives in WEEK 1 (training data) only.
   2. Ask Claude for a plain-English root cause and a JSON list of exclusions.
-  3. Backtest the proposal. If any true positive would be suppressed, send those
-     events back to Claude and ask for a narrower fix (up to MAX_ATTEMPTS).
-  4. Return the final proposal with before/after metrics. Nothing is written to disk;
-     applying the change is a separate human-approved step (see app.py).
+  3. Safety check 1: backtest on week 1. Any real attack suppressed = rejected.
+  4. Safety check 2: validate on WEEK 2 (holdout, never shown to Claude).
+     Any real attack suppressed = rejected.
+  5. On rejection, feed the reason back and retry (up to MAX_ATTEMPTS).
+  6. Return the final proposal, before/after metrics for both weeks, and every attempt.
+     Nothing is written to disk; applying the change is a separate step (see app.py).
 """
 import copy
 import json
@@ -15,7 +17,7 @@ import sys
 import anthropic
 from dotenv import load_dotenv
 
-from agent.backtest import backtest, summary_line
+from agent.backtest import backtest, compare, exclusions_hiding, split_weeks, summary_line
 from agent.engine import OPS, evaluate, load_events, load_rules
 
 load_dotenv()  # reads ANTHROPIC_API_KEY from .env
@@ -23,6 +25,7 @@ load_dotenv()  # reads ANTHROPIC_API_KEY from .env
 MODEL = "claude-sonnet-5-5"
 MAX_ATTEMPTS = 3
 SAMPLE_ROWS = 25  # how many raw FP events to show Claude besides the field profile
+HIDDEN_FIELDS = ["timestamp", "week", "is_malicious"]  # not shown to / usable by Claude
 
 SYSTEM_PROMPT = """You are a senior detection engineer tuning SIEM rules.
 You receive a detection rule and the false-positive alerts it produced.
@@ -78,13 +81,18 @@ def client() -> anthropic.Anthropic:
 
 
 def pick_noisiest(rules: list[dict], df) -> dict:
-    """The rule with the most false positives (most wasted analyst time)."""
-    return max(rules, key=lambda r: backtest(r, df)["false_positives"])
+    """The rule with the most week 1 false positives (most wasted analyst time)."""
+    week1, _ = split_weeks(df)
+    return max(rules, key=lambda r: backtest(r, week1)["false_positives"])
+
+
+def usable_fields(df) -> list[str]:
+    return [c for c in df.columns if c not in HIDDEN_FIELDS]
 
 
 def profile_false_positives(fp_alerts, df) -> str:
     """Compact description of the FP alerts: top values per field plus a raw sample."""
-    cols = [c for c in df.columns if c not in ("timestamp", "is_malicious")]
+    cols = usable_fields(df)
     lines = [f"{len(fp_alerts)} false-positive alerts. Top values per field (value: count):"]
     for col in cols:
         top = fp_alerts[col].value_counts().head(5)
@@ -115,73 +123,111 @@ def ask_claude(messages: list[dict]):
     return json.loads(text), response.content
 
 
-def public_metrics(m: dict) -> dict:
-    """Backtest metrics with the missed-TP DataFrame turned into plain records."""
-    out = {k: v for k, v in m.items() if k != "missed_true_positives"}
-    out["missed_true_positives"] = m["missed_true_positives"].to_dict("records")
-    return out
+def check_fields(exclusions: list[dict], df) -> None:
+    """Reject exclusions that reference unknown or forbidden fields."""
+    allowed = set(usable_fields(df))
+    for exc in exclusions:
+        for cond in exc["conditions"]:
+            if cond["field"] not in allowed:
+                raise ValueError(f"field {cond['field']!r} is not allowed in exclusions")
+
+
+def slim(view: dict) -> dict:
+    """compare() output without the DataFrame, for storing in the attempt log."""
+    return {k: v for k, v in view.items() if k != "missed_events"}
 
 
 def tune_rule(rule: dict, df, log=print) -> dict:
-    """Run the diagnose -> propose -> backtest -> retry loop for one rule."""
-    before = backtest(rule, df)
-    log(f"Baseline   {summary_line(before)}")
-    alerts = evaluate(rule, df)
-    fp_alerts = alerts[~alerts["is_malicious"]]
+    """Run the diagnose -> propose -> week 1 check -> holdout check -> retry loop."""
+    week1, holdout = split_weeks(df)
+    log(f"Baseline week 1   {summary_line(backtest(rule, week1))}")
+    log(f"Baseline holdout  {summary_line(backtest(rule, holdout))}")
 
+    alerts = evaluate(rule, week1)
+    fp_alerts = alerts[~alerts["is_malicious"]]
     messages = [{"role": "user", "content": (
         f"Rule under review:\n{json.dumps(rule, indent=2)}\n\n"
-        f"Available fields: {list(df.columns.drop('is_malicious'))}\n"
+        f"Available fields: {usable_fields(df)}\n"
         f"Supported operators: {list(OPS)}\n\n"
-        f"{profile_false_positives(fp_alerts, df)}\n"
+        f"{profile_false_positives(fp_alerts, week1)}\n"
         "Explain the root cause and propose exclusions."
     )}]
 
-    attempts = []
+    attempts, accepted = [], None
     for attempt in range(1, MAX_ATTEMPTS + 1):
         log(f"Attempt {attempt}: asking {MODEL} for a diagnosis and exclusions...")
         proposal, raw_content = ask_claude(messages)
         candidate = copy.deepcopy(rule)
         candidate["exclusions"] = rule.get("exclusions", []) + proposal["exclusions"]
+        record = {"attempt": attempt, "proposal": proposal, "week1": None, "holdout": None,
+                  "status": "rejected", "reason": ""}
 
         try:
-            after = backtest(candidate, df)
-            error = None
-        except (ValueError, TypeError) as e:          # unknown field/op or bad value type
-            after, error = None, str(e)
-
-        lost = after["missed_true_positives"] if after else None
-        ok = error is None and len(lost) == 0
-        attempts.append({"attempt": attempt, "proposal": proposal, "error": error,
-                         "metrics": public_metrics(after) if after else None, "ok": ok})
-        log(f"Attempt {attempt}: " + (f"invalid proposal ({error})" if error else summary_line(after)))
-        if ok:
-            break
-
-        # Feed the failure back so Claude can narrow its exclusions.
-        if error:
-            feedback = f"Your exclusions could not be evaluated: {error}. Fix them."
+            check_fields(proposal["exclusions"], df)
+            w1 = compare(rule, candidate, week1)
+        except (ValueError, TypeError) as e:      # unknown field/op or bad value type
+            record["reason"] = f"Invalid proposal: {e}"
+            feedback = f"Your exclusions could not be evaluated: {e}. Fix them."
         else:
-            feedback = (f"Backtest failed: your exclusions suppress {len(lost)} confirmed "
-                        "malicious events, which must still alert:\n"
-                        f"{lost.drop(columns='is_malicious').to_csv(index=False)}\n"
-                        "Propose narrower exclusions that keep these alerting. "
-                        "Return the complete exclusion list, not just the changes.")
+            record["week1"] = slim(w1)
+            if w1["missed"]:
+                # Safety check 1 failed: week 1 is training data, so show the events.
+                record["reason"] = f"Week 1 backtest: would hide {w1['missed']} real attack(s)"
+                feedback = (f"Backtest failed: your exclusions suppress {w1['missed']} confirmed "
+                            "malicious events, which must still alert:\n"
+                            f"{w1['missed_events'][usable_fields(df)].to_csv(index=False)}\n"
+                            "Propose narrower exclusions that keep these alerting. "
+                            "Return the complete exclusion list, not just the changes.")
+            else:
+                ho = compare(rule, candidate, holdout)
+                record["holdout"] = slim(ho)
+                if ho["missed"]:
+                    # Safety check 2 failed: say which exclusion was too broad, but do not
+                    # reveal the holdout events, so the holdout stays unseen.
+                    culprits = exclusions_hiding(candidate, ho["missed_events"])
+                    record["reason"] = (f"Holdout (week 2): would hide {ho['missed']} real "
+                                        "attack(s) the agent never saw")
+                    feedback = (
+                        f"Your exclusions passed the training backtest, but on unseen holdout "
+                        f"data they suppressed {ho['missed']} confirmed attack(s). "
+                        "These exclusions were responsible:\n"
+                        + "\n".join(f"- #{c['index']} ({c['reason']}): "
+                                     f"{json.dumps(c['conditions'])} hid {c['attacks_hidden']}"
+                                     for c in culprits)
+                        + "\nThey are too broad: an attacker can share these field values. "
+                        "Make them narrower (combine more specific identifying fields) or drop "
+                        "them. Return the complete exclusion list.")
+                else:
+                    record["status"] = "accepted"
+                    record["reason"] = ("Passed both checks: 0 attacks hidden in week 1 "
+                                        "and in the holdout")
+                    accepted = (candidate, w1, ho)
+
+        attempts.append(record)
+        log(f"Attempt {attempt}: {record['status'].upper()} - {record['reason']}")
+        if accepted:
+            break
         messages += [{"role": "assistant", "content": raw_content},
                      {"role": "user", "content": feedback}]
 
-    final = attempts[-1]
     return {
         "rule_id": rule["id"],
         "rule_name": rule["name"],
-        "success": final["ok"],
-        "explanation": final["proposal"]["root_cause"],
+        "success": accepted is not None,
+        "explanation": attempts[-1]["proposal"]["root_cause"],
         "original_rule": rule,
-        "proposed_rule": candidate if final["ok"] else None,
-        "before": public_metrics(before),
-        "after": final["metrics"],
+        "proposed_rule": accepted[0] if accepted else None,
+        "week1": slim(accepted[1]) if accepted else None,
+        "holdout": slim(accepted[2]) if accepted else None,
         "attempts": attempts,
     }
+
+
+def print_view(label: str, v: dict) -> None:
+    print(f"  {label:<8} TP kept {v['tp_kept']}/{v['tp_before']}, "
+          f"FP removed {v['fp_removed']}/{v['fp_before']}, "
+          f"FP rate {v['before']['fp_rate']:.0%} -> {v['after']['fp_rate']:.0%}, "
+          f"missed attacks {v['missed']}")
 
 
 if __name__ == "__main__":
@@ -196,11 +242,14 @@ if __name__ == "__main__":
 
     result = tune_rule(target, events)
     print("\nRoot cause:\n " + result["explanation"])
+    print("\nSafety check log:")
+    for a in result["attempts"]:
+        print(f"  attempt {a['attempt']}: {a['status']:<8} {a['reason']}")
     if result["success"]:
-        print("\nProposed exclusions:")
+        print("\nAccepted exclusions:")
         print(json.dumps(result["proposed_rule"]["exclusions"], indent=2))
-        b, a = result["before"], result["after"]
-        print(f"\nAlerts {b['alerts']} -> {a['alerts']}, FP {b['false_positives']} -> "
-              f"{a['false_positives']}, TP {b['true_positives']} -> {a['true_positives']}")
+        print("\nImpact:")
+        print_view("week 1", result["week1"])
+        print_view("holdout", result["holdout"])
     else:
         print(f"\nNo safe proposal after {MAX_ATTEMPTS} attempts; rule left unchanged.")

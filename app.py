@@ -68,49 +68,63 @@ if st.button("▶ Run tuning agent", type="primary"):
                 status.update(label=f"{r['id']} failed: {e}", state="error")
 
 # --- 3. Proposals awaiting approval -------------------------------------------
-for rule_id, res in results.items():
-    st.divider()
-    st.subheader(f"{rule_id} · {res['rule_name']}")
-    b, a = res["before"], res["after"]
-
-    if res.get("applied"):
-        st.success("✅ Approved and applied. Verification against rules.json on disk:")
-        live = next(r for r in load_rules() if r["id"] == rule_id)
-        v = backtest(live, events)
-        c1, c2, c3 = st.columns(3)
-        c1.metric("Alerts now", v["alerts"], v["alerts"] - b["alerts"], delta_color="inverse")
-        c2.metric("True positives", v["true_positives"])
-        c3.metric("False positives", v["false_positives"],
-                  v["false_positives"] - b["false_positives"], delta_color="inverse")
-        continue
-
-    if not res["success"]:
-        st.error(f"The agent could not find exclusions that keep every true positive "
-                 f"after {len(res['attempts'])} attempts. The rule was left unchanged.")
-        st.markdown(f"**Agent's diagnosis:** {res['explanation']}")
-        continue
-
-    # Before/after metrics
+def impact_row(label: str, v: dict):
+    """One row of before/after metrics for a slice of data (week 1 or holdout)."""
+    b, a = v["before"], v["after"]
+    st.markdown(f"**{label}**")
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Alerts", a["alerts"], a["alerts"] - b["alerts"], delta_color="inverse")
-    c2.metric("False positives", a["false_positives"],
-              a["false_positives"] - b["false_positives"], delta_color="inverse")
-    c3.metric("True positives kept", f"{a['true_positives']} / {b['true_positives']}")
+    c2.metric("False positives removed", f"{v['fp_removed']} / {v['fp_before']}")
+    c3.metric("Attacks still caught", f"{v['tp_kept']} / {v['tp_before']}")
     c4.metric("FP rate", f"{a['fp_rate']:.0%}", f"{(a['fp_rate'] - b['fp_rate']) * 100:.0f} pts",
               delta_color="inverse")
 
+
+def safety_panel(attempts: list[dict]):
+    """Every proposal the agent made, including the risky ones that were rejected."""
+    rows = []
+    for att in attempts:
+        w1, ho = att["week1"], att["holdout"]
+        rows.append({
+            "Attempt": att["attempt"],
+            "Result": "✅ accepted" if att["status"] == "accepted" else "❌ rejected",
+            "Why": att["reason"],
+            "Week 1 attacks hidden": w1["missed"] if w1 else "-",
+            "Holdout attacks hidden": ho["missed"] if ho else "not run",
+            "Exclusions": "; ".join(
+                " AND ".join(f"{c['field']} {c['op']} {c['value']}" for c in e["conditions"])
+                for e in att["proposal"]["exclusions"]),
+        })
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch")
+
+
+for rule_id, res in results.items():
+    st.divider()
+    st.subheader(f"{rule_id} · {res['rule_name']}")
+
+    if res.get("applied"):
+        st.success("✅ Approved and applied. Verification against rules.json on disk (all data):")
+        live = next(r for r in load_rules() if r["id"] == rule_id)
+        before, v = backtest(res["original_rule"], events), backtest(live, events)
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Alerts now", v["alerts"], v["alerts"] - before["alerts"], delta_color="inverse")
+        c2.metric("True positives", v["true_positives"])
+        c3.metric("False positives", v["false_positives"],
+                  v["false_positives"] - before["false_positives"], delta_color="inverse")
+        continue
+
     st.markdown(f"**Root cause (agent's explanation):** {res['explanation']}")
-    with st.expander(f"Agent reasoning trail ({len(res['attempts'])} attempt(s))"):
-        for att in res["attempts"]:
-            m = att["metrics"]
-            if att["error"]:
-                st.write(f"Attempt {att['attempt']}: ❌ invalid proposal: {att['error']}")
-            elif att["ok"]:
-                st.write(f"Attempt {att['attempt']}: ✅ backtest passed "
-                         f"({m['alerts']} alerts, 0 attacks lost)")
-            else:
-                st.write(f"Attempt {att['attempt']}: ❌ would have missed "
-                         f"{len(m['missed_true_positives'])} real attacks, sent back to the agent")
+    st.markdown("**🔒 Safety check**: every proposal is backtested on week 1, then validated "
+                "on the week 2 holdout the agent never saw.")
+    safety_panel(res["attempts"])
+
+    if not res["success"]:
+        st.error(f"No proposal passed both safety checks after {len(res['attempts'])} "
+                 "attempts. The rule was left unchanged.")
+        continue
+
+    impact_row("Week 1 (training)", res["week1"])
+    impact_row("Week 2 (holdout, unseen)", res["holdout"])
 
     st.markdown("**Rule diff**")
     st.code(rule_diff(res["original_rule"], res["proposed_rule"]), language="diff")
